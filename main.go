@@ -14,8 +14,6 @@ import (
 	cli "github.com/jawher/mow.cli"
 )
 
-// var reFileVar = regexp.MustCompile(`(?m)\$<file:(?:.*)>\$`)
-
 func main() {
 	inputs := []string{}
 	workdir := ""
