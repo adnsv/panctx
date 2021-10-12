@@ -1,0 +1,826 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "definitions": {
+        "Attr": {
+            "type": "array",
+            "items": [
+                {
+                    "type": "string"
+                },
+                {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                {
+                    "type": "array",
+                    "items": {
+                        "type": "array",
+                        "items": [
+                            {
+                                "type": "string"
+                            },
+                            {
+                                "type": "string"
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        "ListAttributes": {
+            "type": "array",
+            "items": [
+                {
+                    "type": "integer"
+                },
+                {
+                    "type": "object",
+                    "properties": {
+                        "t": {
+                            "type": "string",
+                            "enum": [
+                                "DefaultStyle",
+                                "Example",
+                                "Decimal",
+                                "LowerRoman",
+                                "UpperRoman",
+                                "LowerAlpha",
+                                "UpperAlpha"
+                            ]
+                        }
+                    }
+                },
+                {
+                    "type": "object",
+                    "properties": {
+                        "t": {
+                            "type": "string",
+                            "enum": [
+                                "DefaultDelim",
+                                "Period",
+                                "OneParen",
+                                "TwoParens"
+                            ]
+                        }
+                    }
+                }
+            ]
+        },
+        "Alignment": {
+            "type": "object",
+            "properties": {
+                "t": {
+                    "type": "string",
+                    "enum": [
+                        "AlignLeft",
+                        "AlignRight",
+                        "AlignCenter",
+                        "AlignDefault"
+                    ]
+                }
+            }
+        },
+        "TableCell": {
+            "type": "array",
+            "items": {
+                "$ref": "#/definitions/Block"
+            }
+        },
+        "Target": {
+            "type": "array",
+            "items": [
+                {
+                    "type": "string"
+                },
+                {
+                    "type": "string"
+                }
+            ]
+        },
+        "Citation": {
+            "type": "object",
+            "properties": {
+                "citationId": {
+                    "type": "string"
+                },
+                "citationPrefix": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/Inline"
+                    }
+                },
+                "citationSuffix": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/Inline"
+                    }
+                },
+                "citationMode": {
+                    "$ref": "#/definitions/CitationMode"
+                },
+                "citationNoteNum": {
+                    "type": "integer"
+                },
+                "citationHash": {
+                    "type": "integer"
+                }
+            }
+        },
+        "CitationMode": {
+            "type": "object",
+            "properties": {
+                "t": {
+                    "type": "string",
+                    "enum": [
+                        "AuthorInText",
+                        "SuppressAuthor",
+                        "NormalCitation"
+                    ]
+                }
+            }
+        },
+        "MathType": {
+            "type": "object",
+            "properties": {
+                "t": {
+                    "type": "string",
+                    "enum": [
+                        "DisplayMath",
+                        "InlineMath"
+                    ]
+                }
+            }
+        },
+        "QuoteType": {
+            "type": "object",
+            "properties": {
+                "t": {
+                    "type": "string",
+                    "enum": [
+                        "SingleQuote",
+                        "DoubleQuote"
+                    ]
+                }
+            }
+        },
+        "Block": {
+            "oneOf": [
+                {
+                    "type": "object",
+                    "properties": {
+                        "t": {
+                            "type": "string",
+                            "pattern": "Plain"
+                        },
+                        "c": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/Inline"
+                            }
+                        }
+                    }
+                },
+                {
+                    "type": "object",
+                    "properties": {
+                        "t": {
+                            "type": "string",
+                            "pattern": "Para"
+                        },
+                        "c": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/Inline"
+                            }
+                        }
+                    }
+                },
+                {
+                    "type": "object",
+                    "properties": {
+                        "t": {
+                            "type": "string",
+                            "pattern": "LineBlock"
+                        },
+                        "c": {
+                            "type": "array",
+                            "items": {
+                                "type": "array",
+                                "items": {
+                                    "$ref": "#/definitions/Inline"
+                                }
+                            }
+                        }
+                    }
+                },
+                {
+                    "type": "object",
+                    "properties": {
+                        "t": {
+                            "type": "string",
+                            "pattern": "CodeBlock"
+                        },
+                        "c": {
+                            "type": "array",
+                            "items": [
+                                {
+                                    "$ref": "#/definitions/Attr"
+                                },
+                                {
+                                    "type": "string"
+                                }
+                            ]
+                        }
+                    }
+                },
+                {
+                    "type": "object",
+                    "properties": {
+                        "t": {
+                            "type": "string",
+                            "pattern": "RawBlock"
+                        },
+                        "c": {
+                            "type": "array",
+                            "items": [
+                                {
+                                    "type": "string"
+                                },
+                                {
+                                    "type": "string"
+                                }
+                            ]
+                        }
+                    }
+                },
+                {
+                    "type": "object",
+                    "properties": {
+                        "t": {
+                            "type": "string",
+                            "pattern": "BlockQuote"
+                        },
+                        "c": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/Block"
+                            }
+                        }
+                    }
+                },
+                {
+                    "type": "object",
+                    "properties": {
+                        "t": {
+                            "type": "string",
+                            "pattern": "OrderedList"
+                        },
+                        "c": {
+                            "type": "array",
+                            "items": [
+                                {
+                                    "$ref": "#/definitions/ListAttributes"
+                                },
+                                {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "array",
+                                        "items": {
+                                            "$ref": "#/definitions/Block"
+                                        }
+                                    }
+                                }
+                            ]
+                        }
+                    }
+                },
+                {
+                    "type": "object",
+                    "properties": {
+                        "t": {
+                            "type": "string",
+                            "pattern": "BulletList"
+                        },
+                        "c": {
+                            "type": "array",
+                            "items": {
+                                "type": "array",
+                                "items": {
+                                    "$ref": "#/definitions/Block"
+                                }
+                            }
+                        }
+                    }
+                },
+                {
+                    "type": "object",
+                    "properties": {
+                        "t": {
+                            "type": "string",
+                            "pattern": "DefinitionList"
+                        },
+                        "c": {
+                            "type": "array",
+                            "items": {
+                                "type": "array",
+                                "items": [
+                                    {
+                                        "type": "array",
+                                        "items": {
+                                            "$ref": "#/definitions/Inline"
+                                        }
+                                    },
+                                    {
+                                        "type": "array",
+                                        "items": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/definitions/Block"
+                                            }
+                                        }
+                                    }
+                                ]
+                            }
+                        }
+                    }
+                },
+                {
+                    "type": "object",
+                    "properties": {
+                        "t": {
+                            "type": "string",
+                            "pattern": "Header"
+                        },
+                        "c": {
+                            "type": "array",
+                            "items": [
+                                {
+                                    "type": "integer"
+                                },
+                                {
+                                    "$ref": "#/definitions/Attr"
+                                },
+                                {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/definitions/Inline"
+                                    }
+                                }
+                            ]
+                        }
+                    }
+                },
+                {
+                    "type": "object",
+                    "properties": {
+                        "t": {
+                            "type": "string",
+                            "enum": [
+                                "HorizontalRule",
+                                "Null"
+                            ]
+                        }
+                    }
+                },
+                {
+                    "type": "object",
+                    "properties": {
+                        "t": {
+                            "type": "string",
+                            "pattern": "Table"
+                        },
+                        "c": {
+                            "type": "array",
+                            "items": [
+                                {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/definitions/Inline"
+                                    }
+                                },
+                                {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/definitions/Alignment"
+                                    }
+                                },
+                                {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "number"
+                                    }
+                                },
+                                {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/definitions/TableCell"
+                                    }
+                                },
+                                {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "array",
+                                        "items": {
+                                            "$ref": "#/definitions/TableCell"
+                                        }
+                                    }
+                                }
+                            ]
+                        }
+                    }
+                },
+                {
+                    "type": "object",
+                    "properties": {
+                        "t": {
+                            "type": "string",
+                            "pattern": "Div"
+                        },
+                        "c": {
+                            "type": "array",
+                            "items": [
+                                {
+                                    "$ref": "#/definitions/Attr"
+                                },
+                                {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/definitions/Block"
+                                    }
+                                }
+                            ]
+                        }
+                    }
+                }
+            ]
+        },
+        "Inline": {
+            "anyOf": [
+                {
+                    "type": "object",
+                    "properties": {
+                        "t": {
+                            "type": "string",
+                            "pattern": "Str"
+                        },
+                        "c": {
+                            "type": "string"
+                        }
+                    }
+                },
+                {
+                    "type": "object",
+                    "properties": {
+                        "t": {
+                            "type": "string",
+                            "enum": [
+                                "Emph",
+                                "Strong",
+                                "Strikeout",
+                                "Superscript",
+                                "Subscript",
+                                "SmallCaps"
+                            ]
+                        },
+                        "c": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/Inline"
+                            }
+                        }
+                    }
+                },
+                {
+                    "type": "object",
+                    "properties": {
+                        "t": {
+                            "type": "string",
+                            "enum": [
+                                "Quoted"
+                            ]
+                        },
+                        "c": {
+                            "type": "array",
+                            "items": [
+                                {
+                                    "$ref": "#/definitions/QuoteType"
+                                },
+                                {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/definitions/Inline"
+                                    }
+                                }
+                            ]
+                        }
+                    }
+                },
+                {
+                    "type": "object",
+                    "properties": {
+                        "t": {
+                            "type": "string",
+                            "enum": [
+                                "Cite"
+                            ]
+                        },
+                        "c": {
+                            "type": "array",
+                            "items": [
+                                {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/definitions/Citation"
+                                    }
+                                },
+                                {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/definitions/Inline"
+                                    }
+                                }
+                            ]
+                        }
+                    }
+                },
+                {
+                    "type": "object",
+                    "properties": {
+                        "t": {
+                            "type": "string",
+                            "enum": [
+                                "Code"
+                            ]
+                        },
+                        "c": {
+                            "type": "array",
+                            "items": [
+                                {
+                                    "$ref": "#/definitions/Attr"
+                                },
+                                {
+                                    "type": "string"
+                                }
+                            ]
+                        }
+                    }
+                },
+                {
+                    "type": "object",
+                    "properties": {
+                        "t": {
+                            "type": "string",
+                            "enum": [
+                                "Math"
+                            ]
+                        },
+                        "c": {
+                            "type": "array",
+                            "items": [
+                                {
+                                    "$ref": "#/definitions/MathType"
+                                },
+                                {
+                                    "type": "string"
+                                }
+                            ]
+                        }
+                    }
+                },
+                {
+                    "type": "object",
+                    "properties": {
+                        "t": {
+                            "type": "string",
+                            "enum": [
+                                "RawInline"
+                            ]
+                        },
+                        "c": {
+                            "type": "array",
+                            "items": [
+                                {
+                                    "type": "string"
+                                },
+                                {
+                                    "type": "string"
+                                }
+                            ]
+                        }
+                    }
+                },
+                {
+                    "type": "object",
+                    "properties": {
+                        "t": {
+                            "type": "string",
+                            "enum": [
+                                "Image",
+                                "Link"
+                            ]
+                        },
+                        "c": {
+                            "type": "array",
+                            "items": [
+                                {
+                                    "$ref": "#/definitions/Attr"
+                                },
+                                {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/definitions/Inline"
+                                    }
+                                },
+                                {
+                                    "$ref": "#/definitions/Target"
+                                }
+                            ]
+                        }
+                    }
+                },
+                {
+                    "type": "object",
+                    "properties": {
+                        "t": {
+                            "type": "string",
+                            "enum": [
+                                "Span"
+                            ]
+                        },
+                        "c": {
+                            "type": "array",
+                            "items": [
+                                {
+                                    "$ref": "#/definitions/Attr"
+                                },
+                                {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/definitions/Inline"
+                                    }
+                                }
+                            ]
+                        }
+                    }
+                },
+                {
+                    "type": "object",
+                    "properties": {
+                        "t": {
+                            "type": "string",
+                            "enum": [
+                                "Note"
+                            ]
+                        },
+                        "c": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/Block"
+                            }
+                        }
+                    }
+                },
+                {
+                    "type": "object",
+                    "properties": {
+                        "t": {
+                            "type": "string",
+                            "enum": [
+                                "Space",
+                                "SoftBreak",
+                                "LineBreak"
+                            ]
+                        }
+                    }
+                }
+            ]
+        },
+        "MetaValue": {
+            "oneOf": [
+                {
+                    "type": "object",
+                    "properties": {
+                        "t": {
+                            "type": "string",
+                            "enum": [
+                                "MetaBool"
+                            ]
+                        },
+                        "c": {
+                            "type": "boolean"
+                        }
+                    }
+                },
+                {
+                    "type": "object",
+                    "properties": {
+                        "t": {
+                            "type": "string",
+                            "enum": [
+                                "MetaString"
+                            ]
+                        },
+                        "c": {
+                            "type": "string"
+                        }
+                    }
+                },
+                {
+                    "type": "object",
+                    "properties": {
+                        "t": {
+                            "type": "string",
+                            "enum": [
+                                "MetaList"
+                            ]
+                        },
+                        "c": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/MetaValue"
+                            }
+                        }
+                    }
+                },
+                {
+                    "type": "object",
+                    "properties": {
+                        "t": {
+                            "type": "string",
+                            "enum": [
+                                "MetaMap"
+                            ]
+                        },
+                        "c": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "$ref": "#/definitions/MetaValue"
+                            }
+                        }
+                    }
+                },
+                {
+                    "type": "object",
+                    "properties": {
+                        "t": {
+                            "type": "string",
+                            "enum": [
+                                "MetaBlocks"
+                            ]
+                        },
+                        "c": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/Block"
+                            }
+                        }
+                    }
+                },
+                {
+                    "type": "object",
+                    "properties": {
+                        "t": {
+                            "type": "string",
+                            "enum": [
+                                "MetaInlines"
+                            ]
+                        },
+                        "c": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/Inline"
+                            }
+                        }
+                    }
+                }
+            ]
+        },
+        "Meta": {
+            "type": "object",
+            "additionalProperties": {
+                "$ref": "#/definitions/MetaValue"
+            }
+        }
+    },
+    "title": "pandoc",
+    "type": "object",
+    "properties": {
+        "blocks": {
+            "type": "array",
+            "items": {
+                "$ref": "#/definitions/Block"
+            }
+        },
+        "meta": {
+            "$ref": "#/definitions/Meta"
+        },
+        "pandoc-api-version": {
+            "type": "array",
+            "items": {
+                "type": "number"
+            }
+        }
+    }
+}

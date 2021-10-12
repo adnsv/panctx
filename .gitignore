@@ -1,0 +1,16 @@
+### Binaries ###
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+
+### GOLANG temporary files ###
+__debug_bin
+
+### VisualStudioCode ###
+.vscode/*
+*.code-workspace
+
+### Ignore local-testdata dir
+tmp/*
