@@ -1,6 +1,7 @@
 package pandoc
 
 import (
+	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -27,8 +28,8 @@ func NewDocument(buf []byte) (*Document, error) {
 	return doc, nil
 }
 
-func (d *Document) ParseMeta() map[string]InlineList {
-	ret := map[string]InlineList{}
+func (d *Document) ParseMeta() map[string]string {
+	ret := map[string]string{}
 	for k, r := range d.Meta {
 		tc, err := loadTC(r)
 		if err != nil || tc.T != "MetaInlines" {
@@ -38,7 +39,23 @@ func (d *Document) ParseMeta() map[string]InlineList {
 		if err != nil {
 			continue
 		}
-		ret[k] = ss
+		buf := bytes.Buffer{}
+		for _, l := range ss {
+			switch l := l.(type) {
+			case *Space:
+				buf.WriteString(" ")
+			case *SoftBreak:
+				buf.WriteString("\n")
+			case *LineBreak:
+				buf.WriteString("\n")
+			case *Str:
+				buf.WriteString(l.Text)
+			case *RawInline:
+				buf.WriteString(l.Text)
+			}
+		}
+
+		ret[k] = buf.String()
 	}
 	return ret
 }

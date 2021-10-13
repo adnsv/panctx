@@ -47,53 +47,67 @@ A location of a template file (see below) for document generation can be specifi
 
 By default, generated PDF file is saved inside the working directory. Using `-o=<OUTPUT-FILE>` or `--output=<OUTPUT-FILE>` you can rename and move it to the location of your choice.
 
-The command line arguments must specify one or more input files. Those can be ConTEXt flavored `.tex` files, MarkDown `.md` files or files in other formats supported by Pandoc. All inputs, except for `.tex` will be converted by Pandoc to an intermediate format, then converted to ConTEXt `.tex` files. If the template file is defined, then a ConTEXt pass is executed to convert those into PDFs.
+Defitions and overrides to template definitions can be specified with `-d` or `--def` parameter followed by a `name=value` pair.
 
-PanCtx supports a few additional flags that allow to override some fields defined within a template:
+The command line arguments must specify a main input file. The input is a ConTEXt flavored `.tex` file that contains lins and references to template assets.
 
-- `-p=<A4|letter|...>` or `--pagesize=<A4|letter|...>` allows to force a specific page size output (use A4, letter, and other values supported by ConTEXt)
+## Sample Main File
 
-- `--papersize=<A4|letter|...>` similarly to pagesize, this parameter allows to specify custom paper size for PDF generation
+A typical main file defines the overall structure of the document. Here is an example:
 
-- `--top-heading=<section|chapter|part>` allows to customize mapping of markdown headings to ConTEXt document sections.
+```tex
+\input $<template:preamble.tex>$
+
+\startdocument[$<var:title>$]
+
+\startfrontmatter
+\input $<template:front-page.tex>$
+\input $<template:legal-page.tex>$
+\input $<template:contents.tex>$
+\stopfrontmatter
+
+\startbodymatter
+\input $<markdown:fulltext.md>$
+\stopbodymatter
+
+\stopdocument
+```
+
+This is a ConTEXt flavored tex format with placeholders referring to template variables and files. References to markdown sources are processed by PanCtx using markdown->json->context filters.
 
 ## Template File
 
-TODO: describe template fields
+Template file provides definitions for variables and declares asset files. Variables can be referenced in other places as `$<var:name>$`. Asset files can be referenced as `$<template:name>$`.
 
 Here is an example:
 
 ```yml
-fontsize: 12pt
+def:
+  fontsize: 12pt
+  top-heading: chapter
+  default-externalfigure-size: width=0.9\textwidth
+
 layouts:
   A4: backspace=63pt,width=468pt,topspace=49pt,height=744pt
   letter: backspace=72pt,width=468pt,topspace=24pt,height=744pt
 
-top-heading: chapter
-
-default-externalfigure-size: width=0.9\textwidth
-
-exec: main # execute this file with context
-
-files:
-  - src: main.tex
-  - src: logo.svg
-
-  - src: front-page.tex
-  - src: legal.tex
-
-front-matter:
-  \input front-page
-  \input legal
-
-  \setupheadtext[content=Contents]
-
-  \setupcombinedlist[content][list={chapter}, alternative=c,]
-
-  \vfill
-
-  \completecontent
-
-body-matter: 
-  \input fulltext
+assets:
+  - logo.svg
+  - front-page.tex
+  - legal-page.tex
+  - contents.tex
+  - preamble.tex
 ```
+
+Note, that variable definitions declared in the template can be overriden in the command line with `-d` or `--def` flags.
+
+Page size and layout variables have special handling:
+
+- `pagesize` specifies the size of the page for layout purposes, typical values are `A4`, `letter` (default), etc.
+- `papersize` specifies the size of paper for printing, which can be used to generate a PDF file with multiple pages per sheet. If not explicitly defined, `papersize` defaults to be the same as `pagesize`.
+- `layout` specifies margins and other page layout settings.
+- `layouts` allows to specify a layout for each pagesize. This layout gets automatically loaded into the `layout` variable.
+
+
+
+TODO: more detailed description

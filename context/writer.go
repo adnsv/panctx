@@ -346,7 +346,7 @@ func FlattenInlines(ll pandoc.InlineList) string {
 		case *pandoc.LineBreak:
 			buf.WriteString("\n")
 		case *pandoc.Str:
-			buf.WriteString(escapeStr(l.Text))
+			buf.WriteString(EscapeStr(l.Text))
 		case *pandoc.Formatted:
 			buf.WriteString(FlattenInlines(l.Content))
 		case *pandoc.Quoted:
@@ -379,7 +379,7 @@ func (w *Writer) WriteInlines(ll pandoc.InlineList) {
 			w.wr("\\crlf\n")
 
 		case *pandoc.Str:
-			w.wr(escapeStr(l.Text))
+			w.wr(EscapeStr(l.Text))
 
 		case *pandoc.Formatted:
 			w.wr(contextFmt(l.Fmt))
@@ -400,7 +400,7 @@ func (w *Writer) WriteInlines(ll pandoc.InlineList) {
 		case *pandoc.Code:
 			if strings.ContainsAny(l.Text, "\\~%$#{}") {
 				w.wr("\\mono{")
-				w.wr(escapeStr(l.Text))
+				w.wr(EscapeStr(l.Text))
 				w.wr("}")
 			} else {
 				w.wr("\\type{")
@@ -448,7 +448,7 @@ var escaper = strings.NewReplacer(
 	`~`, `\~`,
 )
 
-func escapeStr(s string) string {
+func EscapeStr(s string) string {
 	if strings.ContainsAny(s, "\\~%$#{}") {
 		s = escaper.Replace(s)
 	}
