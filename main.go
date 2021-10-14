@@ -37,6 +37,13 @@ func main() {
 		}
 
 		prj := context.NewProject(workdir)
+
+		prj.Definitions["fontsize"] = "12pt"
+		prj.Definitions["pagesize"] = "letter"
+		prj.Definitions["title"] = ""
+		prj.Definitions["subtitle"] = ""
+		prj.Definitions["date"] = ""
+
 		err = prj.LoadConfig(templateFN)
 		if err != nil {
 			log.Fatal(err)
@@ -52,10 +59,6 @@ func main() {
 				log.Fatalf("invalid definition %s", def)
 			}
 			prj.Definitions[strings.TrimSpace(kv[0])] = kv[1]
-		}
-
-		if _, ok := prj.Definitions["pagesize"]; !ok {
-			prj.Definitions["pagesize"] = "letter"
 		}
 
 		if v, ok := prj.Layouts[prj.Definitions["pagesize"]]; ok {

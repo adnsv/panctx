@@ -260,6 +260,7 @@ func (w *Writer) WriteBlocks(bb []pandoc.Block) {
 func (w *Writer) writeExternalFigure(img *pandoc.Image) {
 	fn := img.Target.URL
 	fn = w.resolveImageTarget(fn)
+	ext := strings.ToLower(filepath.Ext(fn))
 	w.wr("{\\externalfigure[")
 	w.wr(fn)
 	w.wr("]")
@@ -298,7 +299,7 @@ func (w *Writer) writeExternalFigure(img *pandoc.Image) {
 			haveWidth = true
 		}
 	}
-	if !haveWidth && !haveHeight && w.DefaultExternalFigureSize != "" {
+	if !haveWidth && !haveHeight && ext != ".svg" && w.DefaultExternalFigureSize != "" {
 		attrs = append(attrs, w.DefaultExternalFigureSize)
 	}
 	if len(attrs) > 0 {
@@ -477,7 +478,7 @@ func contextFmt(f pandoc.InlineFmt) string {
 }
 
 func splitNumUnits(s string) (n float32, u string, err error) {
-	for _, p := range []string{"%", "px", "cm", "mm", "in", "inch"} {
+	for _, p := range []string{"%", "px", "cm", "mm", "in", "inch", "pt"} {
 		if strings.HasSuffix(s, p) {
 			u = p
 			s = s[:len(s)-len(p)]
