@@ -67,11 +67,30 @@ func (w *Writer) makeHeading(lvl int) string {
 	}
 }
 
-func (w *Writer) writeRow(row *pandoc.Row) {
-	w.wr("\\startxrow")
-	for _, c := range row.Cells {
-		w.wr("\n\\startxcell")
-		w.blockSep = "\n"
+func (w *Writer) writeRow(table *pandoc.Table, row *pandoc.Row, style string) {
+	if style != "" {
+		style = "[" + style + "]"
+	}
+	w.wr("\\startxrow" + style)
+	for i, c := range row.Cells {
+		styles := []string{}
+		alignmentHack := ""
+		if i < len(table.ColSpecs) {
+			switch table.ColSpecs[i].Alignment {
+			case "AlignCenter":
+				alignmentHack = "\u200B" // zero-width space
+				styles = append(styles, "align=center")
+			case "AlignRight":
+				alignmentHack = "\u200B" // zero-width space
+				styles = append(styles, "align=flushright")
+			}
+		}
+		sty := ""
+		if len(styles) > 0 {
+			sty = "[" + strings.Join(styles, ",") + "]"
+		}
+		w.wr("\n\\startxcell" + sty)
+		w.blockSep = "\n" + alignmentHack
 		w.WriteBlocks(c.Blocks)
 		w.wr("\n\\stopxcell")
 	}
@@ -96,17 +115,24 @@ func (w *Writer) writeTable(table *pandoc.Table) {
 		w.wr("\n\\startxtablehead")
 		for _, r := range table.Head.Rows {
 			w.wr("\n")
-			w.writeRow(r)
+			w.writeRow(table, r, "head")
 		}
 		w.wr("\n\\stopxtablehead")
 	}
 
-	for _, tb := range table.Bodies {
+	for j, tb := range table.Bodies {
 		// todo: figure out how exactly pandoc works here
 		w.wr("\n\\startxtablebody")
-		for _, r := range tb.Rows2 {
+		for i, r := range tb.Rows2 {
 			w.wr("\n")
-			w.writeRow(r)
+
+			last := j == len(table.Bodies)-1 && i == len(tb.Rows2)-1
+
+			if last {
+				w.writeRow(table, r, "lastbody")
+			} else {
+				w.writeRow(table, r, "body")
+			}
 		}
 		w.wr("\n\\stopxtablebody")
 	}
@@ -115,7 +141,7 @@ func (w *Writer) writeTable(table *pandoc.Table) {
 		w.wr("\n\\startxtablefoot")
 		for _, r := range table.Foot.Rows {
 			w.wr("\n")
-			w.writeRow(r)
+			w.writeRow(table, r, "foot")
 		}
 		w.wr("\n\\stopxtablefoot")
 	}
