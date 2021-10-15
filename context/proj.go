@@ -192,10 +192,9 @@ func (prj *Project) replaceContent(buf []byte) []byte {
 				for _, tf := range prj.MarkdownAssets {
 					if tf.srcFN == fn {
 						return []byte(tf.dstFN)
-					} else {
-						log.Printf("unknown markdown path: %s\n", v)
 					}
 				}
+				log.Printf("unknown markdown path: %s\n", v)
 			}
 
 		}
