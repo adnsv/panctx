@@ -504,7 +504,7 @@ func contextFmt(f pandoc.InlineFmt) string {
 }
 
 func splitNumUnits(s string) (n float32, u string, err error) {
-	for _, p := range []string{"%", "px", "cm", "mm", "in", "inch", "pt"} {
+	for _, p := range []string{"%", "px", "cm", "mm", "in", "inch", "pt", "em"} {
 		if strings.HasSuffix(s, p) {
 			u = p
 			s = s[:len(s)-len(p)]
