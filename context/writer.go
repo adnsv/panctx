@@ -181,6 +181,56 @@ func (w *Writer) writeDiv(div *pandoc.Div) {
 	}
 }
 
+func (w *Writer) handleAdmonition(ll pandoc.InlineList) bool {
+	if len(ll) < 3 {
+		return false
+	}
+
+	f, ok := ll[0].(*pandoc.Formatted)
+	if !ok {
+		return false
+	}
+	_, ok = ll[1].(*pandoc.Space)
+	if !ok {
+		return false
+	}
+
+	/*
+		somewhere in preamble:
+
+		\definecolor[warnbgclr][c=0, m=.05, y=.03]
+		\definecolor[warnfrclr][c=0, m=.4, y=.4]
+
+		\defineframedtext[warning][
+		  location=none,
+		  margin=no,
+		  leftframe=off,
+		  rightframe=off,
+		  offset=2pt,
+		  width=max,
+		  framecolor=warnfrclr,
+		  background=color,
+		  backgroundcolor=warnbgclr,
+		]
+
+	*/
+
+	if f.Fmt == pandoc.Strong {
+		if len(f.Content) == 1 {
+			if s, ok := f.Content[0].(*pandoc.Str); ok {
+				if s.Text == "Warning:" {
+					w.wr("\\startwarning\n")
+					w.wr(s.Text + " ")
+					w.WriteInlines(ll[2:])
+					w.wr("\n\\stopwarning")
+					return true
+				}
+			}
+		}
+	}
+	return false
+}
+
 func (w *Writer) WriteBlocks(bb []pandoc.Block) {
 	for _, b := range bb {
 		w.wr(w.blockSep)
@@ -190,7 +240,9 @@ func (w *Writer) WriteBlocks(bb []pandoc.Block) {
 			w.blockSep = "\n\n"
 
 		case *pandoc.Para:
-			w.WriteInlines(b.Inlines)
+			if !w.handleAdmonition(b.Inlines) {
+				w.WriteInlines(b.Inlines)
+			}
 			w.blockSep = "\n\n"
 
 		case *pandoc.LineBlock:
