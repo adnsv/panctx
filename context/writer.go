@@ -167,7 +167,6 @@ func (w *Writer) writeDiv(div *pandoc.Div) {
 		w.forceInline--
 		w.wr("\n\\stopcombination")
 	} else if c = kv["columns"]; c != "" {
-
 		w.wr("\\startcolumns[" + c + "]")
 		w.blockSep = "\n"
 		w.WriteBlocks(div.Blocks)
@@ -195,36 +194,19 @@ func (w *Writer) handleAdmonition(ll pandoc.InlineList) bool {
 		return false
 	}
 
-	/*
-		somewhere in preamble:
-
-		\definecolor[warnbgclr][c=0, m=.05, y=.03]
-		\definecolor[warnfrclr][c=0, m=.4, y=.4]
-
-		\defineframedtext[warning][
-		  location=none,
-		  margin=no,
-		  leftframe=off,
-		  rightframe=off,
-		  offset=2pt,
-		  width=max,
-		  framecolor=warnfrclr,
-		  background=color,
-		  backgroundcolor=warnbgclr,
-		]
-
-	*/
-
 	if f.Fmt == pandoc.Strong {
 		if len(f.Content) == 1 {
-			if s, ok := f.Content[0].(*pandoc.Str); ok {
-				if s.Text == "Warning:" {
-					w.wr("\\startwarning\n")
-					w.wr(s.Text + " ")
-					w.WriteInlines(ll[2:])
-					w.wr("\n\\stopwarning")
-					return true
+			if s, ok := f.Content[0].(*pandoc.Str); ok && len(s.Text) > 2 && s.Text[0] == '!' {
+				p := s.Text[1:]
+				ft := "NOTE"
+				if p[0] == '!' {
+					p = p[1:]
+					ft = "WARNING"
 				}
+				w.wr("\\start" + ft + "{" + EscapeStr(p) + "}\n")
+				w.WriteInlines(ll[2:])
+				w.wr("\n\\stop" + ft)
+				return true
 			}
 		}
 	}
@@ -312,6 +294,9 @@ func (w *Writer) WriteBlocks(bb []pandoc.Block) {
 
 		case *pandoc.Header:
 			w.wr(w.makeHeading(b.Level))
+			if b.Attr.Identifier != "" {
+				w.wr("[" + b.Attr.Identifier + "]")
+			}
 			w.wr("{")
 			w.WriteInlines(b.Inlines)
 			w.wr("}")
@@ -339,6 +324,22 @@ func (w *Writer) writeExternalFigure(img *pandoc.Image) {
 	fn := img.Target.URL
 	fn = w.resolveImageTarget(fn)
 	ext := strings.ToLower(filepath.Ext(fn))
+
+	kv := img.Attr.KeyValMap()
+	if dx, dy := kv["dx"], kv["dy"]; dx != "" || dy != "" {
+		w.wr("\\offset[")
+		if dx != "" {
+			w.wr(fmt.Sprintf("x=%s", dx))
+			if dy != "" {
+				w.wr(",")
+			}
+		}
+		if dy != "" {
+			w.wr(fmt.Sprintf("y=%s", dy))
+		}
+		w.wr("]")
+	}
+
 	w.wr("{\\externalfigure[")
 	w.wr(fn)
 	w.wr("]")
@@ -347,7 +348,7 @@ func (w *Writer) writeExternalFigure(img *pandoc.Image) {
 
 	haveWidth := false
 	haveHeight := false
-	if kv := img.Attr.KeyValMap(); len(kv) > 0 {
+	if len(kv) > 0 {
 		if s := kv["width"]; s != "" {
 			n, u, err := splitNumUnits(s)
 			if err == nil {
@@ -388,7 +389,7 @@ func (w *Writer) writeExternalFigure(img *pandoc.Image) {
 
 func (w *Writer) writeImage(img *pandoc.Image) {
 	options := []string{}
-	references := []string{}
+
 	if len(img.Content) == 0 {
 		options = append(options, "none")
 	}
@@ -403,7 +404,7 @@ func (w *Writer) writeImage(img *pandoc.Image) {
 	w.wr("[" + strings.Join(options, ",") + "]")
 
 	// references
-	w.wr("[" + strings.Join(references, ",") + "]")
+	w.wr("[" + img.Attr.Identifier + "]")
 
 	// title
 	w.wr("{")
@@ -509,7 +510,31 @@ func (w *Writer) WriteInlines(ll pandoc.InlineList) {
 				w.writeImage(l)
 			}
 
-			// todo Link, Image, Cite, Span
+		case *pandoc.Link:
+			{
+				c := FlattenInlines(l.Content)
+				if c != "" {
+					if strings.HasSuffix(c, "\\#") {
+						c = strings.TrimSuffix(c, "\\#")
+						w.wr("\\in{")
+						w.wr(EscapeStr(c))
+						w.wr("}[")
+						s := strings.TrimPrefix(l.Target.URL, "#")
+						w.wr(s)
+						w.wr(("]"))
+						break
+					}
+				}
+
+				w.wr("\\goto{")
+				w.WriteInlines(l.Content)
+				w.wr("}[")
+				s := strings.TrimPrefix(l.Target.URL, "#")
+				w.wr(s)
+				w.wr(("]"))
+			}
+
+			// todo Link, Cite, Span
 
 		}
 

@@ -19,6 +19,15 @@ func (a *Attr) KeyValMap() map[string]string {
 	return ret
 }
 
+func (a *Attr) HasClass(s string) bool {
+	for _, c := range a.Classes {
+		if c == s {
+			return true
+		}
+	}
+	return false
+}
+
 type Block interface {
 }
 
