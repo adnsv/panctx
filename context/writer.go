@@ -154,6 +154,23 @@ func (w *Writer) writeDiv(div *pandoc.Div) {
 	kv := div.Attr.KeyValMap()
 	w.blockSep = ""
 
+	if div.Attr.HasClass("HSTACK") {
+		w.wr("\\startxtable\\startxrow\\startxcell")
+		w.blockSep = "\n"
+		for _, b := range div.Blocks {
+			if _, ok := b.(*pandoc.HorizontalRule); ok {
+				w.wr("\n\\stopxcell\\startxcell")
+				w.blockSep = "\n"
+				continue
+			}
+			w.wr(w.blockSep)
+			w.writeBlock(b)
+		}
+
+		w.wr("\n\\stopxcell\\stopxrow\\stopxtable")
+		return
+	}
+
 	n := kv["narrower"]
 	if n != "" {
 		w.wr("\\startnarrow[middle=" + n + "]\n")
@@ -213,110 +230,120 @@ func (w *Writer) handleAdmonition(ll pandoc.InlineList) bool {
 	return false
 }
 
+func (w *Writer) writeBlock(b pandoc.Block) {
+	switch b := b.(type) {
+	case *pandoc.Plain:
+		w.WriteInlines(b.Inlines)
+		w.blockSep = "\n\n"
+
+	case *pandoc.Para:
+		if !w.handleAdmonition(b.Inlines) {
+			w.WriteInlines(b.Inlines)
+		}
+		w.blockSep = "\n\n"
+
+	case *pandoc.LineBlock:
+		for i, ll := range b.Lines {
+			if i > 0 {
+				w.wr("\n")
+			}
+			w.WriteInlines(ll)
+		}
+		w.blockSep = "\n\n"
+
+	case *pandoc.CodeBlock:
+		w.wr("\\starttyping")
+		if len(b.Attr.Classes) > 0 {
+			lang := b.Attr.Classes[0]
+			w.wr("[option=" + lang + "]")
+		}
+		w.wr("\n")
+		w.wr(b.Text)
+		w.wr("\n\\stoptyping")
+		w.blockSep = "\n\n"
+
+	case *pandoc.BlockQuote:
+		w.wr("\\startblockquote")
+		w.blockSep = "\n"
+		w.WriteBlocks(b.Blocks)
+		w.wr("\n\\stopblockquote")
+		w.blockSep = "\n\n"
+
+	case *pandoc.OrderedList:
+		w.wr("\\startitemize[n,packed][stopper=.]")
+		for _, bb := range b.Items {
+			w.wr("\n\\item\n")
+			w.blockSep = ""
+			w.WriteBlocks(bb)
+			w.blockSep = "\n\n"
+		}
+		w.wr("\n\\stopitemize")
+		w.blockSep = "\n\n"
+
+	case *pandoc.BulletList:
+		w.wr("\\startitemize")
+		for _, bb := range b.Items {
+			w.wr("\n\\item\n")
+			w.blockSep = ""
+			w.WriteBlocks(bb)
+			w.blockSep = "\n\n"
+		}
+		w.wr("\n\\stopitemize")
+		w.blockSep = "\n\n"
+
+	case *pandoc.DefinitionList:
+		for i, item := range b.Items {
+			if i > 0 {
+				w.wr("\n\n")
+			}
+			w.wr("\\startdescription{")
+			w.WriteInlines(item.Term)
+			w.wr("}")
+			w.blockSep = "\n"
+			for _, bb := range item.Definitions {
+				w.WriteBlocks(bb)
+			}
+			w.wr("\n\\stopdescription")
+			w.blockSep = "\n\n"
+		}
+
+	case *pandoc.Header:
+		w.wr(w.makeHeading(b.Level))
+		if b.Attr.Identifier != "" {
+			w.wr("[" + b.Attr.Identifier + "]")
+		}
+		w.wr("{")
+		w.WriteInlines(b.Inlines)
+		w.wr("}")
+		w.blockSep = "\n\n"
+
+	case *pandoc.HorizontalRule:
+		w.wr("\\thinrule")
+		w.blockSep = "\n\n"
+
+	case *pandoc.Table:
+		w.writeTable(b)
+		w.blockSep = "\n\n"
+
+	case *pandoc.Div:
+		w.writeDiv(b)
+		w.blockSep = "\n\n"
+
+	case *pandoc.RawBlock:
+		if b.Format == "tex" {
+			w.wr(b.Text)
+			w.blockSep = "\n\n"
+		}
+
+	default:
+		w.blockSep = ""
+	}
+}
+
 func (w *Writer) WriteBlocks(bb []pandoc.Block) {
 	for _, b := range bb {
 		w.wr(w.blockSep)
-		switch b := b.(type) {
-		case *pandoc.Plain:
-			w.WriteInlines(b.Inlines)
-			w.blockSep = "\n\n"
-
-		case *pandoc.Para:
-			if !w.handleAdmonition(b.Inlines) {
-				w.WriteInlines(b.Inlines)
-			}
-			w.blockSep = "\n\n"
-
-		case *pandoc.LineBlock:
-			for i, ll := range b.Lines {
-				if i > 0 {
-					w.wr("\n")
-				}
-				w.WriteInlines(ll)
-			}
-			w.blockSep = "\n\n"
-
-		case *pandoc.CodeBlock:
-			w.wr("\\starttyping")
-			if len(b.Attr.Classes) > 0 {
-				lang := b.Attr.Classes[0]
-				w.wr("[option=" + lang + "]")
-			}
-			w.wr("\n")
-			w.wr(b.Text)
-			w.wr("\n\\stoptyping")
-			w.blockSep = "\n\n"
-
-		case *pandoc.BlockQuote:
-			w.wr("\\startblockquote")
-			w.blockSep = "\n"
-			w.WriteBlocks(b.Blocks)
-			w.wr("\n\\stopblockquote")
-			w.blockSep = "\n\n"
-
-		case *pandoc.OrderedList:
-			w.wr("\\startitemize[n,packed][stopper=.]")
-			for _, bb := range b.Items {
-				w.wr("\n\\item\n")
-				w.blockSep = ""
-				w.WriteBlocks(bb)
-				w.blockSep = "\n\n"
-			}
-			w.wr("\n\\stopitemize")
-			w.blockSep = "\n\n"
-
-		case *pandoc.BulletList:
-			w.wr("\\startitemize")
-			for _, bb := range b.Items {
-				w.wr("\n\\item\n")
-				w.blockSep = ""
-				w.WriteBlocks(bb)
-				w.blockSep = "\n\n"
-			}
-			w.wr("\n\\stopitemize")
-			w.blockSep = "\n\n"
-
-		case *pandoc.DefinitionList:
-			for i, item := range b.Items {
-				if i > 0 {
-					w.wr("\n\n")
-				}
-				w.wr("\\startdescription{")
-				w.WriteInlines(item.Term)
-				w.wr("}")
-				w.blockSep = "\n"
-				for _, bb := range item.Definitions {
-					w.WriteBlocks(bb)
-				}
-				w.wr("\n\\stopdescription")
-				w.blockSep = "\n\n"
-			}
-
-		case *pandoc.Header:
-			w.wr(w.makeHeading(b.Level))
-			if b.Attr.Identifier != "" {
-				w.wr("[" + b.Attr.Identifier + "]")
-			}
-			w.wr("{")
-			w.WriteInlines(b.Inlines)
-			w.wr("}")
-			w.blockSep = "\n\n"
-
-		case *pandoc.HorizontalRule:
-			w.wr("\\thinrule")
-			w.blockSep = "\n\n"
-
-		case *pandoc.Table:
-			w.writeTable(b)
-			w.blockSep = "\n\n"
-
-		case *pandoc.Div:
-			w.writeDiv(b)
-			w.blockSep = "\n\n"
-
-		default:
-			w.blockSep = ""
-		}
+		w.writeBlock(b)
 	}
 }
 
