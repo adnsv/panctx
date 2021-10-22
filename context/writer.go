@@ -8,7 +8,7 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/adnsv/panctx/pandoc"
+	"github.com/adnsv/go-pandoc"
 )
 
 type Writer struct {

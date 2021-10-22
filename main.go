@@ -15,14 +15,16 @@ func main() {
 	workdir := ""
 	templateFN := ""
 	outFN := ""
+	htmlFN := ""
 	definitions := []string{}
 
 	app := cli.App("panctx", "Pandoc->ConTeXt converter")
-	app.Spec = "-w=<WORKDIR> [-t=<TEMPLATE-FILE>] [-d=<var=value>] [-o=<OUTPUT-FILE>] INPUT"
+	app.Spec = "-w=<WORKDIR> [-t=<TEMPLATE-FILE>] [-d=<var=value>] [-o=<OUTPUT-FILE>] [--html=<OUTPUT-FILE>] INPUT"
 	app.StringOptPtr(&workdir, "w workdir", "", "a directory for temporary files")
 	app.StringOptPtr(&templateFN, "t template", "", "specify a yaml template file (required for PDF generation)")
 	app.StringsOptPtr(&definitions, "d def", nil, "add definition")
 	app.StringOptPtr(&outFN, "o output", "", "output filename for the generated PDF file (also requires -t flag)")
+	app.StringOptPtr(&htmlFN, "html", "", "html output filename (optional)")
 	app.StringArgPtr(&mainInputFN, "INPUT", "", "input file")
 
 	app.Action = func() {
@@ -71,6 +73,10 @@ func main() {
 		err = prj.Process()
 		if err != nil {
 			log.Fatal(err)
+		}
+
+		if htmlFN != "" {
+
 		}
 
 		pdfFN, err := prj.BuildPDF()

@@ -10,8 +10,8 @@ import (
 	"regexp"
 	"strings"
 
+	"github.com/adnsv/go-pandoc"
 	"github.com/adnsv/go-utils/fs"
-	"github.com/adnsv/panctx/pandoc"
 	"gopkg.in/yaml.v3"
 )
 
