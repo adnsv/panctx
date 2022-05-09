@@ -1,4 +1,5 @@
 # PanCtx
+
 Markdown-Pandoc-ConTEXt-PDF filter
 
 This little utility effectively converts markdown files to pdf. 
@@ -53,7 +54,7 @@ The command line arguments must specify a main input file. The input is a ConTEX
 
 ## Sample Main File
 
-A typical main file defines the overall structure of the document. Here is an example:
+Main file defines the overall structure of the document. Here is an example:
 
 ```tex
 \input $<template:preamble.tex>$
@@ -99,7 +100,7 @@ assets:
   - preamble.tex
 ```
 
-Note, that variable definitions declared in the template can be overriden in the command line with `-d` or `--def` flags.
+Note that variable definitions declared in the template can be overriden in the command line with `-d` or `--def` flags.
 
 Page size and layout variables have special handling:
 
@@ -108,6 +109,30 @@ Page size and layout variables have special handling:
 - `layout` specifies margins and other page layout settings.
 - `layouts` allows to specify a layout for each pagesize. This layout gets automatically loaded into the `layout` variable.
 
+To support this behavior, include the following fragment in your `preamble.tex` or into your main `.tex` document:
 
+```tex
+\setupbodyfont[mainface, $<var:fontsize>$]
+\setuppapersize[$<var:pagesize>$][$<var:papersize>$]
+\setuplayout[$<var:layout>$]
+```
+
+There is also a couple of special definitions that control generated content:
+
+- `top-heading`: controls mapping of level one markdown headings to the generated ConTEXt headings. Supported values are `part`, `chapter`, `section`. Default is `section`.
+
+- `default-externalfigure-size`: can be used when importing external images (except for .svg). External figures are mapped to `\externalfigure[...]` statements in context. If the corresponding markdown does has no size constraints (e.g. no `width` and no `height` attributes), then the statement from `default-externalfigure-size` will be injected.
+
+Notice also, that mapping of markdown descriptions, requires a custom ConText definition:
+
+```tex
+\definedescription[description][
+  alternative=top, 
+  headstyle=\ss\bf, 
+  margin=2em,
+  inbetween=,
+  headcommand=\descriptionHeadCommand
+]
+```
 
 TODO: more detailed description
