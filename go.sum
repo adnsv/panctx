@@ -1,7 +1,7 @@
 github.com/adnsv/go-pandoc v0.0.2 h1:cM8wg+RXMC6R0/Kd16qb7Qs2H4QFovu38mhuJOr6Tg4=
 github.com/adnsv/go-pandoc v0.0.2/go.mod h1:KdbdETJAha86UK1yMc0t1VMKFsLWTLsONkWr2E6V1yE=
-github.com/adnsv/go-utils v0.3.4 h1:cbQJvfOy4ptb/HDTfzPg6eqO7/MMMaRxYiV2YoExYA4=
-github.com/adnsv/go-utils v0.3.4/go.mod h1:qRfwb7OsCykkh4Qmy6/4jTlD3oS0FwzroCYG7DZ8UgI=
+github.com/adnsv/go-utils v0.5.0 h1:beLYDAA5C1sH7ORJ619apAPB7z3UMzNBfpKpQ1aVu4g=
+github.com/adnsv/go-utils v0.5.0/go.mod h1:jBL3afsCjsVyP09CeX+1nWRxNJTJeUrS33MIrKay4mc=
 github.com/davecgh/go-spew v1.1.0/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=
 github.com/davecgh/go-spew v1.1.1 h1:vj9j/u1bqnvCEfJOwUhtlOARqs3+rkHYY13jYWTU97c=
 github.com/davecgh/go-spew v1.1.1/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=
@@ -19,5 +19,5 @@ gopkg.in/check.v1 v0.0.0-20161208181325-20d25e280405/go.mod h1:Co6ibVJAznAaIkqp8
 gopkg.in/yaml.v2 v2.2.2/go.mod h1:hI93XBmqTisBFMUTm0b8Fm+jr3Dg1NNxqwp+5A1VGuI=
 gopkg.in/yaml.v2 v2.2.5 h1:ymVxjfMaHvXD8RqPRmzHHsB3VvucivSkIAvJFDI5O3c=
 gopkg.in/yaml.v2 v2.2.5/go.mod h1:hI93XBmqTisBFMUTm0b8Fm+jr3Dg1NNxqwp+5A1VGuI=
-gopkg.in/yaml.v3 v3.0.0-20210107192922-496545a6307b h1:h8qDotaEPuJATrMmW04NCwg7v22aHH28wwpauUhK9Oo=
-gopkg.in/yaml.v3 v3.0.0-20210107192922-496545a6307b/go.mod h1:K4uyk7z7BCEPqu6E+C64Yfv1cQ7kz7rIZviUmN+EgEM=
+gopkg.in/yaml.v3 v3.0.1 h1:fxVm/GzAzEWqLHuvctI91KS9hhNmmWOoWu0XTYJS7CA=
+gopkg.in/yaml.v3 v3.0.1/go.mod h1:K4uyk7z7BCEPqu6E+C64Yfv1cQ7kz7rIZviUmN+EgEM=

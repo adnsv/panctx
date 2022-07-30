@@ -11,7 +11,7 @@ import (
 	"strings"
 
 	"github.com/adnsv/go-pandoc"
-	"github.com/adnsv/go-utils/fs"
+	"github.com/adnsv/go-utils/filesystem"
 	"gopkg.in/yaml.v3"
 )
 
@@ -207,7 +207,7 @@ func (prj *Project) Process() (err error) {
 
 	out := prj.replaceContent(prj.mainBuf)
 	log.Printf("- writing %s\n", prj.mainDstFN)
-	err = fs.WriteFileIfChanged(prj.mainDstFN, out)
+	err = filesystem.WriteFileIfChanged(prj.mainDstFN, out)
 	if err != nil {
 		return err
 	}
@@ -220,7 +220,7 @@ func (prj *Project) Process() (err error) {
 		}
 		out := prj.replaceContent(in)
 		log.Printf("- writing %s\n", f.dstFN)
-		err = fs.WriteFileIfChanged(f.dstFN, out)
+		err = filesystem.WriteFileIfChanged(f.dstFN, out)
 		if err != nil {
 			return err
 		}
@@ -238,7 +238,7 @@ func (prj *Project) Process() (err error) {
 		}
 		w.WriteBlocks(flow)
 		log.Printf("- writing %s\n", f.dstFN)
-		err = fs.WriteFileIfChanged(f.dstFN, out.Bytes())
+		err = filesystem.WriteFileIfChanged(f.dstFN, out.Bytes())
 		if err != nil {
 			return err
 		}
