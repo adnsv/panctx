@@ -1,7 +1,7 @@
 github.com/adnsv/go-pandoc v0.0.2 h1:cM8wg+RXMC6R0/Kd16qb7Qs2H4QFovu38mhuJOr6Tg4=
 github.com/adnsv/go-pandoc v0.0.2/go.mod h1:KdbdETJAha86UK1yMc0t1VMKFsLWTLsONkWr2E6V1yE=
-github.com/adnsv/go-utils v0.5.0 h1:beLYDAA5C1sH7ORJ619apAPB7z3UMzNBfpKpQ1aVu4g=
-github.com/adnsv/go-utils v0.5.0/go.mod h1:jBL3afsCjsVyP09CeX+1nWRxNJTJeUrS33MIrKay4mc=
+github.com/adnsv/go-utils v0.7.0 h1:tlX0pBCWI2zH/1o/MulrRCz9LlyXZT6sZXg6YZrWx5Q=
+github.com/adnsv/go-utils v0.7.0/go.mod h1:TYfA/m6fXAvxMkOqbdqojDmGJ9FOx47ey3aar0Aqc9U=
 github.com/davecgh/go-spew v1.1.0/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=
 github.com/davecgh/go-spew v1.1.1 h1:vj9j/u1bqnvCEfJOwUhtlOARqs3+rkHYY13jYWTU97c=
 github.com/davecgh/go-spew v1.1.1/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=

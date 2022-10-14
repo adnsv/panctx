@@ -1,42 +1,22 @@
 # PanCtx
 
-Markdown-Pandoc-ConTEXt-PDF filter
+Markdown-Pandoc-ConTEXt-PDF converter
 
-This little utility effectively converts markdown files to pdf. 
+This utility converts markdown files to pdf with Pandoc and Context. 
 
-## Obtaining PanCtx
+## Installation
 
-Prerequisite: make sure GO language compiler is installed on your system.
+To install a binary release:
 
-Downloading source code:
+- download the file matching your platform here: [Latest release
+  binaries](https://github.com/adnsv/panctx/releases/latest)
+- unzip it into the directory of your choice
+- make sure your system path resolves to that directory
 
-```sh
-go get github.com/adnsv/panctx
-```
+To build and install PanCtx from sources:
 
-Updating source code:
-
-```sh
-go get -u github.com/adnsv/panctx
-```
-
-After the source code for PanCtx is obtained, you can execute it directly:
-
-```sh
-go run github.com/adnsv/panctx <args...>
-```
-
-Alternatively, build and install it into GO user path with the following command:
-
-```sh
-go install github.com/adnsv/panctx
-```
-
-If your user's GO path is configured correctly, you should be able to run this utility as a regular executable:
-
-```sh
-panctx <args...>
-```
+- make sure you have a recent GO compiler installed
+- execute `go install github.com/adnsv/panctx@latest`
 
 ## Running PanCtx
 
