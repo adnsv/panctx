@@ -13,16 +13,17 @@ import (
 
 type Writer struct {
 	out         io.Writer
-	indir       string
 	blockSep    string
 	forceInline int
 	topLevel    int
 
+	OnResolveImageTarget func(string) string
+
 	DefaultExternalFigureSize string // used to constrain externalfigure size when neigher its width nor height is specified
 }
 
-func NewWriter(w io.Writer, indir string) *Writer {
-	return &Writer{out: w, indir: indir, topLevel: 1}
+func NewWriter(w io.Writer) *Writer {
+	return &Writer{out: w, topLevel: 1}
 }
 
 func (w *Writer) SetTopLevelDivision(s string) {
@@ -39,13 +40,11 @@ func (w *Writer) SetTopLevelDivision(s string) {
 }
 
 func (w *Writer) resolveImageTarget(url string) string {
-	if !filepath.IsAbs(url) {
-		a, err := filepath.Abs(filepath.Join(w.indir, url))
-		if err == nil {
-			url = a
-		}
+	ret := url
+	if w.OnResolveImageTarget != nil {
+		ret = w.OnResolveImageTarget(url)
 	}
-	return filepath.ToSlash(url)
+	return filepath.ToSlash(ret)
 }
 
 func (w *Writer) wr(s string) {
@@ -561,7 +560,7 @@ func (w *Writer) WriteInlines(ll pandoc.InlineList) {
 				w.wr(("]"))
 			}
 
-			// todo Link, Cite, Span
+			// todo Cite, Span
 
 		}
 

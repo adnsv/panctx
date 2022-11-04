@@ -1,0 +1,38 @@
+\startMPpage
+
+  StartPage;
+
+    fill Page enlarged 5mm withcolor \MPcolor{tesclr};
+
+    setbounds currentpicture to
+      boundingbox currentpicture
+      enlarged 1mm;
+
+    numeric rr; rr := PaperWidth - 48pt;
+    numeric rv; rv := PaperHeight / 2;
+
+    picture logo;  logo  := lmt_svg[filename="tessonics-logo-white.svg", height=24pt];
+    numeric logow; logow := bbwidth(logo);
+    numeric logoh; logoh := bbheight(logo);
+    
+    picture url;   url   := image(draw textext("\ss www.tessonics.com") xsized(logow) withcolor white);
+    picture title; title := image(draw textext("\ss F1 Hardware Manual") ysized(32pt) withcolor white);
+    picture subtitle; subtitle := image(draw textext("\ss ") ysized(26pt) withcolor white);
+
+    string revisionstr; revisionstr := "1";
+    string datestr; datestr := "2021/10/12";
+    if revisionstr <> "":
+      datestr := "Revision " & revisionstr & ", " & datestr;
+    fi
+    
+    picture date; date := image(draw textext("\ss " & datestr) ysized(12pt) withcolor white);
+    
+    draw logo shifted(rr-logow, rv+logoh+6pt);
+    draw anchored.urt(url, (rr, rv));   
+    draw anchored.urt(title, (rr, rv - 36pt));
+    draw anchored.urt(subtitle, (rr, rv - 80pt));
+    draw anchored.urt(date, (rr, rv - 140pt));
+
+  StopPage;
+
+\stopMPpage

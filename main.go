@@ -1,12 +1,14 @@
 package main
 
 import (
+	"fmt"
 	"log"
 	"os"
 	"path/filepath"
 	"strings"
 
 	"github.com/adnsv/panctx/context"
+	modelv2 "github.com/adnsv/panctx/model-v2"
 	cli "github.com/jawher/mow.cli"
 )
 
@@ -36,6 +38,20 @@ func main() {
 			log.Fatal(err)
 		}
 
+		mainExt := strings.ToLower(filepath.Ext(mainInputFN))
+		if mainExt == ".yml" || mainExt == ".yaml" {
+			tt, err := modelv2.LoadTargets(mainInputFN)
+			if err != nil {
+				log.Fatal(err)
+			}
+
+			fmt.Printf("loaded %d targets\n", len(tt))
+			fmt.Printf("done\n")
+			return
+			//log.Fatal("yaml files are not supported yet as main files")
+			//fmt.Printf("loaded: %s", proj.Title)
+		}
+
 		prj := context.NewProject(workdir)
 
 		prj.Definitions["fontsize"] = "12pt"
@@ -43,12 +59,12 @@ func main() {
 		prj.Definitions["title"] = ""
 		prj.Definitions["subtitle"] = ""
 		prj.Definitions["date"] = ""
-
-		err = prj.LoadConfig(templateFN)
+		err = prj.LoadTemplate(templateFN)
 		if err != nil {
 			log.Fatal(err)
 		}
-		err = prj.LoadMain(mainInputFN)
+
+		err = prj.LoadMainTex(mainInputFN)
 		if err != nil {
 			log.Fatal(err)
 		}

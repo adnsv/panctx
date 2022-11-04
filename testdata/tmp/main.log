@@ -1,0 +1,618 @@
+fonts           > beware: no fonts are loaded yet, using 'lm mono' in box
+system          > 
+system          > ConTeXt  ver: 2021.05.09 17:14 LMTX  fmt: 2021.5.10  int: english/english
+system          > 
+system          > 'cont-new.mkxl' loaded
+open source     > level 1, order 1, name '/Users/alex/context-osx-64/tex/texmf-context/tex/context/base/mkxl/cont-new.mkxl'
+system          > beware: some patches loaded from cont-new.mkiv
+close source    > level 1, order 1, name '/Users/alex/context-osx-64/tex/texmf-context/tex/context/base/mkxl/cont-new.mkxl'
+system          > files > jobname 'main', input '/Users/alex/go/src/github.com/adnsv/panctx/testdata/tmp/main', result 'main'
+fonts           > latin modern fonts are not preloaded
+languages       > language 'en' is active
+open source     > level 1, order 2, name '/Users/alex/go/src/github.com/adnsv/panctx/testdata/tmp/main.tex'
+open source     > level 2, order 3, name 'preamble.tex'
+colors          > 'rgb' color space is supported
+colors          > 'cmyk' color space is supported
+close source    > level 2, order 3, name 'preamble.tex'
+structures      > begin of sectionblock 'frontpart'
+open source     > level 2, order 4, name 'front-page.tex'
+metapost        > initializing instance 'metafun:1' using format 'metafun' and method 'default'
+metapost        > loading 'metafun' as 'metafun.mpxl' using method 'default'
+metapost        > initializing number mode 'scaled'
+backend         > xmp > using file '/Users/alex/context-osx-64/tex/texmf-context/tex/context/base/mkiv/lpdf-pdx.xml'
+pages           > flushing realpage 1, userpage 1, subpage 1
+close source    > level 2, order 4, name 'front-page.tex'
+open source     > level 2, order 5, name 'legal-page.tex'
+pages           > flushing realpage 2, userpage 1, subpage 2
+close source    > level 2, order 5, name 'legal-page.tex'
+open source     > level 2, order 6, name 'contents-chapter-section.tex'
+close source    > level 2, order 6, name 'contents-chapter-section.tex'
+structures      > bookmark: Contents
+structure       > sectioning > title @ level 2 : 0.0 -> \headtext {content}
+structures      > end of sectionblock 'frontpart'
+pages           > flushing realpage 3, userpage 1, subpage 3
+structures      > begin of sectionblock 'bodypart'
+open source     > level 2, order 7, name '0-info.tex'
+close source    > level 2, order 7, name '0-info.tex'
+open source     > level 2, order 8, name '1-getting-started.tex'
+structures      > bookmark: Getting Started
+structure       > sectioning > chapter @ level 2 : 0.1 -> Getting Started
+structures      > bookmark: Damage in Transit
+structure       > sectioning > section @ level 3 : 0.1.1 -> Damage in Transit
+structures      > bookmark: Setting Up
+structure       > sectioning > section @ level 3 : 0.1.2 -> Setting Up
+close source    > level 2, order 8, name '1-getting-started.tex'
+open source     > level 2, order 9, name '2-overview.tex'
+pages           > flushing realpage 4, userpage 2, subpage 4
+structures      > bookmark: Overview
+structure       > sectioning > chapter @ level 2 : 0.2 -> Overview
+metapost        > initializing instance 'doublefun:1' using format 'metafun' and method 'double'
+metapost        > loading 'metafun' as 'metafun.mpxl' using method 'double'
+metapost        > initializing number mode 'double'
+fonts           > defining > font with asked name 'apos-normal-normal' is not found using lookup 'spec'
+fonts           > defining > unable to define 'apos-normal-normal' as 'thedefinedfont--0'
+floatblocks     > '1' placed (here)
+close source    > level 2, order 9, name '2-overview.tex'
+open source     > level 2, order 10, name '3-probe.tex'
+pages           > flushing realpage 5, userpage 3, subpage 5
+structures      > bookmark: Ultrasonic Probe
+structure       > sectioning > chapter @ level 2 : 0.3 -> Ultrasonic Probe
+floatblocks     > '2' placed (here)
+structures      > bookmark: Usage
+structure       > sectioning > section @ level 3 : 0.3.1 -> Usage
+structures      > bookmark: Cleaning and Maintenance
+structure       > sectioning > section @ level 3 : 0.3.2 -> Cleaning and Maintenance
+pages           > flushing realpage 6, userpage 4, subpage 6
+close source    > level 2, order 10, name '3-probe.tex'
+open source     > level 2, order 11, name '4-tablet.tex'
+pages           > flushing realpage 7, userpage 5, subpage 7
+structures      > bookmark: F1 Tablet
+structure       > sectioning > chapter @ level 2 : 0.4 -> F1 Tablet
+floatblocks     > '3' placed (here)
+structures      > bookmark: Status Indicators
+structure       > sectioning > section @ level 3 : 0.4.1 -> Status Indicators
+pages           > flushing realpage 8, userpage 6, subpage 8
+floatblocks     > '4' placed (here)
+structures      > bookmark: System States
+structure       > sectioning > section @ level 3 : 0.4.2 -> System States
+setup           > error in line 175, namespace 'offsetbox', key 'middle,'
+setup           > error in line 175, namespace 'offsetbox', key 'middle,'
+setup           > error in line 179, namespace 'offsetbox', key 'middle,'
+setup           > error in line 179, namespace 'offsetbox', key 'middle,'
+setup           > error in line 185, namespace 'offsetbox', key 'middle,'
+setup           > error in line 185, namespace 'offsetbox', key 'middle,'
+setup           > error in line 193, namespace 'offsetbox', key 'middle,'
+setup           > error in line 193, namespace 'offsetbox', key 'middle,'
+setup           > error in line 201, namespace 'offsetbox', key 'middle,'
+setup           > error in line 201, namespace 'offsetbox', key 'middle,'
+pages           > flushing realpage 9, userpage 7, subpage 9
+structures      > bookmark: Screen Protector
+structure       > sectioning > section @ level 3 : 0.4.3 -> Screen Protector
+structures      > bookmark: Storing
+structure       > sectioning > section @ level 3 : 0.4.4 -> Storing
+pages           > flushing realpage 10, userpage 8, subpage 10
+structures      > bookmark: Front View Buttons
+structure       > sectioning > section @ level 3 : 0.4.5 -> Front View Buttons
+floatblocks     > 1 saved
+structures      > bookmark: Function Keys
+structure       > sectioning > section @ level 3 : 0.4.6 -> Function Keys
+floatblocks     > 2 saved
+close source    > level 2, order 11, name '4-tablet.tex'
+open source     > level 2, order 12, name '5-batteries.tex'
+floatblocks     > 1 moved
+floatblocks     > 2 moved
+pages           > flushing realpage 11, userpage 9, subpage 11
+pages           > flushing realpage 12, userpage 10, subpage 12
+pages           > flushing realpage 13, userpage 11, subpage 13
+structures      > bookmark: Removable Batteries
+structure       > sectioning > chapter @ level 2 : 0.5 -> Removable Batteries
+floatblocks     > '7' placed (here)
+structures      > bookmark: Battery Charging
+structure       > sectioning > section @ level 3 : 0.5.1 -> Battery Charging
+structures      > bookmark: When to Replace the Battery
+structure       > sectioning > section @ level 3 : 0.5.2 -> When to Replace the Battery
+pages           > flushing realpage 14, userpage 12, subpage 14
+close source    > level 2, order 12, name '5-batteries.tex'
+open source     > level 2, order 13, name '6-charger.tex'
+pages           > flushing realpage 15, userpage 13, subpage 15
+structures      > bookmark: Charger/AC Adapter
+structure       > sectioning > chapter @ level 2 : 0.6 -> Charger/AC Adapter
+close source    > level 2, order 13, name '6-charger.tex'
+open source     > level 2, order 14, name '7-remote.tex'
+pages           > flushing realpage 16, userpage 14, subpage 16
+structures      > bookmark: Remote Control
+structure       > sectioning > chapter @ level 2 : 0.7 -> Remote Control
+structures      > bookmark: Button Assignments
+structure       > sectioning > section @ level 3 : 0.7.1 -> Button Assignments
+floatblocks     > '8' placed (right)
+setup           > error in line 13, namespace 'offsetbox', key 'middle,'
+setup           > error in line 13, namespace 'offsetbox', key 'middle,'
+
+Overfull \hbox (112.59647pt too wide) in paragraph at lines 13--13
+ [][]  
+4:8: 
+4:8: \hbox[normal][16=1,17=1,47=21,50=3], width 331.40353, height 14.4065, depth 4.03381, direction l2r
+4:8: .\list
+4:8: ..\glue[left][16=1,17=1,47=21,50=3] 23.98682pt
+4:8: ..\glue[parfillleft][16=1,17=1,47=21,50=3] 0.0pt
+4:8: ..\par[newgraf][16=1,17=1,47=21,50=3], hangindent -112.59647, hangafter -17, hsize 444.0, rightskip 0.0pt plus 24.0pt, leftskip 23.98682pt, pretolerance 100, tolerance 1500, adjdemerits 10000, linepenalty 10, doublehyphendemerits 10000, finalhyphendemerits 5000, clubpenalty 2000, widowpenalty 2000, brokenpenalty 100, parfillskip 0.0pt plus 1.0fil, hyphenationmode 499519
+4:8: ..\whatsit[latelua][16=1,17=1,47=21,50=3]
+4:8: ... data = action=function: 0x7fa1704fdbe0 | specification={c=true | d=264360 | h=679784 | ha=-17 | hi=-7379122 | hs=29097984 | ls=1572000 | p=true | r=true | x=true | y=true}
+4:8: ..\hbox[hbox][16=1,17=1,47=21,50=3], width 420.01318, height 14.4065, depth 4.03381, direction l2r
+4:8: ...\list
+4:8: ....\whatsit[latelua][16=1,17=1,47=21]
+4:8: ....\boundary[user][16=1,17=1,20=37,47=21] 1
+4:8: ....\glyph[32768][16=1,17=1,20=37,47=21], language (n=1,l=2,r=3), hyphenationmode 499519, options 128 , font <2: LibertinusSerif-Regular @ 12.0pt>, glyph U+000000  
+4:8: ....\boundary[user][16=1,17=1,20=37,47=21] 2
+4:8: ....\vbox[normal][16=1,17=1,47=21], width 420.01318, height 14.4065, depth 4.03381, direction l2r
+4:8: .....\list
+4:8: ......\hbox[line][16=1,17=1,47=21], width 420.01318, height 14.4065, depth 4.03381, glue 389.5859fil, direction l2r
+4:8: .......\list
+4:8: ........\glue[left hang][16=1,17=1,47=21] 0.0pt
+4:8: ........\glue[left][16=1,17=1,47=21] 0.0pt
+4:8: ........\glue[parfillleft][16=1,17=1,47=21] 0.0pt
+4:8: ........\par[newgraf][16=1,17=1,47=21], rightskip 0.0pt plus 24.0pt, leftskip 23.98682pt, parfillskip 0.0pt plus 1.0fil, baselineskip 14.4065pt, lineskip 1.0pt
+4:8: ........\glue[indent][16=1,17=1,47=21] 0.0pt
+4:8: ........\boundary[user][16=1,17=1,47=21] 1
+4:8: ........\hbox[hbox][16=1,17=2], height 10.37268, depth 4.03381, direction l2r
+4:8: ........\penalty[user][16=1,17=1,47=21] 10000
+4:8: ........\glue[user][16=1,17=1,47=21] 0.0pt
+4:8: ........\hbox[hbox][16=1,17=1,47=21], width 30.42728, height 14.4065, direction l2r
+4:8: .........\list
+4:8: ..........\kern[explicit][16=1,17=1,47=21], amount 0.0
+4:8: ..........\hbox[hbox][16=1,17=1,47=21], width 30.42728, height 7.20325, depth 7.20325, direction l2r
+4:8: ...........\list
+4:8: ............\hbox[hbox][16=1,17=1,47=21], width 30.42728, height 7.20325, depth 7.20325, direction l2r
+4:8: .............\list
+4:8: ..............\hbox[hbox], direction l2r
+4:8: ...............\list
+4:8: ................\rule[normal]
+4:8: ..............\hbox[hbox][16=1,17=1,47=21], width 30.42728, height 7.20325, depth 7.20325, direction l2r, orientation "0, offset(0.0,-7.20325)
+4:8: ...............\list
+4:8: ................\hbox[hbox][16=1,17=1,47=21], width 30.42728, height 14.4065, direction l2r
+4:8: .................\list
+4:8: ..................\vbox[normal][16=1,17=1,47=21], width 30.42728, height 14.4065, direction l2r
+4:8: ...................\list
+4:8: ....................\kern[explicit][16=1,17=1,47=21], amount 0.0
+4:8: ....................\hbox[hbox][16=1,17=1,47=21], width 30.42728, height 10.37268, depth 4.03381, direction l2r
+4:8: .....................\list
+4:8: ......................\kern[explicit][16=1,17=1,47=21], amount -23.98682
+4:8: ......................\hbox[hbox][16=1,17=1,47=21], width 54.4141, height 10.37268, depth 4.03381, direction l2r
+4:8: .......................\list
+4:8: ........................\hbox[hbox][16=1,17=2], height 10.37268, depth 4.03381, direction l2r
+4:8: ........................\glyph[32768][16=1,17=1,47=21], language (n=1,l=2,r=3), hyphenationmode 499519, options 128 , font <12: LibertinusSans-Bold @ 12.0pt>, glyph U+000053 S
+4:8: ........................\glyph[32768][16=1,17=1,47=21], language (n=1,l=2,r=3), hyphenationmode 499519, options 128 , font <12: LibertinusSans-Bold @ 12.0pt>, glyph U+000065 e
+4:8: ........................\glyph[32768][16=1,17=1,47=21], language (n=1,l=2,r=3), hyphenationmode 499519, options 128 , font <12: LibertinusSans-Bold @ 12.0pt>, glyph U+000074 t
+4:8: ........................\glyph[32768][16=1,17=1,47=21], language (n=1,l=2,r=3), hyphenationmode 499519, options 128 , font <12: LibertinusSans-Bold @ 12.0pt>, glyph U+000075 u
+4:8: ........................\glyph[32768][16=1,17=1,47=21], language (n=1,l=2,r=3), hyphenationmode 499519, options 128 , font <12: LibertinusSans-Bold @ 12.0pt>, glyph U+000070 p
+4:8: ........................\glyph[32768][16=1,17=1,47=21], language (n=1,l=2,r=3), hyphenationmode 499519, options 128 , font <12: LibertinusSans-Bold @ 12.0pt>, glyph U+00002F /
+4:8: ........................\glyph[32768][16=1,17=1,47=21], language (n=1,l=2,r=3), hyphenationmode 499519, options 128 , font <12: LibertinusSans-Bold @ 12.0pt>, glyph U+000047 G
+4:8: ........................\glyph[32768][16=1,17=1,47=21], language (n=1,l=2,r=3), hyphenationmode 499519, options 128 , font <12: LibertinusSans-Bold @ 12.0pt>, glyph U+000065 e
+4:8: ........................\glyph[32768][16=1,17=1,47=21], language (n=1,l=2,r=3), hyphenationmode 499519, options 128 , font <12: LibertinusSans-Bold @ 12.0pt>, glyph U+000074 t
+4:8: ......................\kern[explicit][16=1,17=1,47=21], amount 0.0
+4:8: ....................\kern[explicit][16=1,17=1,47=21], amount 0.0
+4:8: ........\penalty[user][16=1,17=1,47=21] 10000
+4:8: ........\glue[user][16=1,17=1,47=21] 0.0pt
+4:8: ........\hbox[hbox][16=1,17=2], height 10.37268, depth 4.03381, direction l2r
+4:8: ........\boundary[user][16=1,17=1,47=21] 2
+4:8: ........\penalty[line][16=1,17=1,47=21] 10000
+4:8: ........\glue[parfill][16=1,17=1,47=21] 0.0pt plus 1.0fil
+4:8: ........\glue[right][16=1,17=1,47=21] 0.0pt
+4:8: ........\glue[right hang][16=1,17=1,47=21] 0.0pt
+4:8: ..\penalty[line][16=1,17=1,47=21,50=3] 10000
+4:8: ..\glue[parfill][16=1,17=1,47=21,50=3] 0.0pt plus 1.0fil
+4:8: ..\glue[right][16=1,17=1,47=21,50=3] 0.0pt plus 24.0pt
+
+setup           > error in line 17, namespace 'offsetbox', key 'middle,'
+setup           > error in line 17, namespace 'offsetbox', key 'middle,'
+setup           > error in line 21, namespace 'offsetbox', key 'middle,'
+setup           > error in line 21, namespace 'offsetbox', key 'middle,'
+
+Overfull \hbox (112.59647pt too wide) in paragraph at lines 21--21
+ [][]  
+4:8: 
+4:8: \hbox[normal][16=1,17=1,47=21,50=3], width 331.40353, height 14.4065, depth 4.03381, direction l2r
+4:8: .\list
+4:8: ..\glue[left][16=1,17=1,47=21,50=3] 23.98682pt
+4:8: ..\glue[parfillleft][16=1,17=1,47=21,50=3] 0.0pt
+4:8: ..\par[newgraf][16=1,17=1,47=21,50=3], hangindent -112.59647, hangafter -12, hsize 444.0, rightskip 0.0pt plus 24.0pt, leftskip 23.98682pt, pretolerance 100, tolerance 1500, adjdemerits 10000, linepenalty 10, doublehyphendemerits 10000, finalhyphendemerits 5000, clubpenalty 2000, widowpenalty 2000, brokenpenalty 100, parfillskip 0.0pt plus 1.0fil, hyphenationmode 499519
+4:8: ..\whatsit[latelua][16=1,17=1,47=21,50=3]
+4:8: ... data = action=function: 0x7fa1704fdbe0 | specification={c=true | d=264360 | h=679784 | ha=-12 | hi=-7379122 | hs=29097984 | ls=1572000 | p=true | r=true | x=true | y=true}
+4:8: ..\hbox[hbox][16=1,17=1,47=21,50=3], width 420.01318, height 14.4065, depth 4.03381, direction l2r
+4:8: ...\list
+4:8: ....\whatsit[latelua][16=1,17=1,47=21]
+4:8: ....\boundary[user][16=1,17=1,20=39,47=21] 1
+4:8: ....\glyph[32768][16=1,17=1,20=39,47=21], language (n=1,l=2,r=3), hyphenationmode 499519, options 128 , font <2: LibertinusSerif-Regular @ 12.0pt>, glyph U+000000  
+4:8: ....\boundary[user][16=1,17=1,20=39,47=21] 2
+4:8: ....\vbox[normal][16=1,17=1,47=21], width 420.01318, height 14.4065, depth 4.03381, direction l2r
+4:8: .....\list
+4:8: ......\hbox[line][16=1,17=1,47=21], width 420.01318, height 14.4065, depth 4.03381, glue 396.26624fil, direction l2r
+4:8: .......\list
+4:8: ........\glue[left hang][16=1,17=1,47=21] 0.0pt
+4:8: ........\glue[left][16=1,17=1,47=21] 0.0pt
+4:8: ........\glue[parfillleft][16=1,17=1,47=21] 0.0pt
+4:8: ........\par[newgraf][16=1,17=1,47=21], rightskip 0.0pt plus 24.0pt, leftskip 23.98682pt, parfillskip 0.0pt plus 1.0fil, baselineskip 14.4065pt, lineskip 1.0pt
+4:8: ........\glue[indent][16=1,17=1,47=21] 0.0pt
+4:8: ........\boundary[user][16=1,17=1,47=21] 1
+4:8: ........\hbox[hbox][16=1,17=2], height 10.37268, depth 4.03381, direction l2r
+4:8: ........\penalty[user][16=1,17=1,47=21] 10000
+4:8: ........\glue[user][16=1,17=1,47=21] 0.0pt
+4:8: ........\hbox[hbox][16=1,17=1,47=21], width 23.74695, height 14.4065, direction l2r
+4:8: .........\list
+4:8: ..........\kern[explicit][16=1,17=1,47=21], amount 0.0
+4:8: ..........\hbox[hbox][16=1,17=1,47=21], width 23.74695, height 7.20325, depth 7.20325, direction l2r
+4:8: ...........\list
+4:8: ............\hbox[hbox][16=1,17=1,47=21], width 23.74695, height 7.20325, depth 7.20325, direction l2r
+4:8: .............\list
+4:8: ..............\hbox[hbox], direction l2r
+4:8: ...............\list
+4:8: ................\rule[normal]
+4:8: ..............\hbox[hbox][16=1,17=1,47=21], width 23.74695, height 7.20325, depth 7.20325, direction l2r, orientation "0, offset(0.0,-7.20325)
+4:8: ...............\list
+4:8: ................\hbox[hbox][16=1,17=1,47=21], width 23.74695, height 14.4065, direction l2r
+4:8: .................\list
+4:8: ..................\vbox[normal][16=1,17=1,47=21], width 23.74695, height 14.4065, direction l2r
+4:8: ...................\list
+4:8: ....................\kern[explicit][16=1,17=1,47=21], amount 0.0
+4:8: ....................\hbox[hbox][16=1,17=1,47=21], width 23.74695, height 10.37268, depth 4.03381, direction l2r
+4:8: .....................\list
+4:8: ......................\kern[explicit][16=1,17=1,47=21], amount -23.98682
+4:8: ......................\hbox[hbox][16=1,17=1,47=21], width 47.73376, height 10.37268, depth 4.03381, direction l2r
+4:8: .......................\list
+4:8: ........................\hbox[hbox][16=1,17=2], height 10.37268, depth 4.03381, direction l2r
+4:8: ........................\glyph[32768][16=1,17=1,47=21], language (n=1,l=2,r=3), hyphenationmode 499519, options 128 , font <12: LibertinusSans-Bold @ 12.0pt>, glyph U+000050 P
+4:8: ........................\glyph[32768][16=1,17=1,47=21], language (n=1,l=2,r=3), hyphenationmode 499519, options 128 , font <12: LibertinusSans-Bold @ 12.0pt>, glyph U+000061 a
+4:8: ........................\glyph[32768][16=1,17=1,47=21], language (n=1,l=2,r=3), hyphenationmode 499519, options 128 , font <12: LibertinusSans-Bold @ 12.0pt>, glyph U+000073 s
+4:8: ........................\glyph[32768][16=1,17=1,47=21], language (n=1,l=2,r=3), hyphenationmode 499519, options 128 , font <12: LibertinusSans-Bold @ 12.0pt>, glyph U+000073 s
+4:8: ........................\glyph[32768][16=1,17=1,47=21], language (n=1,l=2,r=3), hyphenationmode 499519, options 128 , font <12: LibertinusSans-Bold @ 12.0pt>, glyph U+00002F /
+4:8: ........................\glyph[32768][16=1,17=1,47=21], language (n=1,l=2,r=3), hyphenationmode 499519, options 128 , font <12: LibertinusSans-Bold @ 12.0pt>, glyph U+000046 F
+4:8: ........................\glyph[32768][16=1,17=1,47=21], language (n=1,l=2,r=3), hyphenationmode 499519, options 128 , font <12: LibertinusSans-Bold @ 12.0pt>, glyph U+000061 a
+4:8: ........................\glyph[32768][16=1,17=1,47=21], language (n=1,l=2,r=3), hyphenationmode 499519, options 128 , font <12: LibertinusSans-Bold @ 12.0pt>, glyph U+000069 i
+4:8: ........................\glyph[32768][16=1,17=1,47=21], language (n=1,l=2,r=3), hyphenationmode 499519, options 128 , font <12: LibertinusSans-Bold @ 12.0pt>, glyph U+00006C l
+4:8: ......................\kern[explicit][16=1,17=1,47=21], amount 0.0
+4:8: ....................\kern[explicit][16=1,17=1,47=21], amount 0.0
+4:8: ........\penalty[user][16=1,17=1,47=21] 10000
+4:8: ........\glue[user][16=1,17=1,47=21] 0.0pt
+4:8: ........\hbox[hbox][16=1,17=2], height 10.37268, depth 4.03381, direction l2r
+4:8: ........\boundary[user][16=1,17=1,47=21] 2
+4:8: ........\penalty[line][16=1,17=1,47=21] 10000
+4:8: ........\glue[parfill][16=1,17=1,47=21] 0.0pt plus 1.0fil
+4:8: ........\glue[right][16=1,17=1,47=21] 0.0pt
+4:8: ........\glue[right hang][16=1,17=1,47=21] 0.0pt
+4:8: ..\penalty[line][16=1,17=1,47=21,50=3] 10000
+4:8: ..\glue[parfill][16=1,17=1,47=21,50=3] 0.0pt plus 1.0fil
+4:8: ..\glue[right][16=1,17=1,47=21,50=3] 0.0pt plus 24.0pt
+
+setup           > error in line 25, namespace 'offsetbox', key 'middle,'
+setup           > error in line 25, namespace 'offsetbox', key 'middle,'
+
+Overfull \hbox (112.59647pt too wide) in paragraph at lines 25--25
+ [][]  
+4:8: 
+4:8: \hbox[normal][16=1,17=1,47=21,50=3], width 331.40353, height 14.4065, depth 4.03381, direction l2r
+4:8: .\list
+4:8: ..\glue[left][16=1,17=1,47=21,50=3] 23.98682pt
+4:8: ..\glue[parfillleft][16=1,17=1,47=21,50=3] 0.0pt
+4:8: ..\par[newgraf][16=1,17=1,47=21,50=3], hangindent -112.59647, hangafter -9, hsize 444.0, rightskip 0.0pt plus 24.0pt, leftskip 23.98682pt, pretolerance 100, tolerance 1500, adjdemerits 10000, linepenalty 10, doublehyphendemerits 10000, finalhyphendemerits 5000, clubpenalty 2000, widowpenalty 2000, brokenpenalty 100, parfillskip 0.0pt plus 1.0fil, hyphenationmode 499519
+4:8: ..\whatsit[latelua][16=1,17=1,47=21,50=3]
+4:8: ... data = action=function: 0x7fa1704fdbe0 | specification={c=true | d=264360 | h=679784 | ha=-9 | hi=-7379122 | hs=29097984 | ls=1572000 | p=true | r=true | x=true | y=true}
+4:8: ..\hbox[hbox][16=1,17=1,47=21,50=3], width 420.01318, height 14.4065, depth 4.03381, direction l2r
+4:8: ...\list
+4:8: ....\whatsit[latelua][16=1,17=1,47=21]
+4:8: ....\boundary[user][16=1,17=1,20=40,47=21] 1
+4:8: ....\glyph[32768][16=1,17=1,20=40,47=21], language (n=1,l=2,r=3), hyphenationmode 499519, options 128 , font <2: LibertinusSerif-Regular @ 12.0pt>, glyph U+000000  
+4:8: ....\boundary[user][16=1,17=1,20=40,47=21] 2
+4:8: ....\vbox[normal][16=1,17=1,47=21], width 420.01318, height 14.4065, depth 4.03381, direction l2r
+4:8: .....\list
+4:8: ......\hbox[line][16=1,17=1,47=21], width 420.01318, height 14.4065, depth 4.03381, glue 418.37009fil, direction l2r
+4:8: .......\list
+4:8: ........\glue[left hang][16=1,17=1,47=21] 0.0pt
+4:8: ........\glue[left][16=1,17=1,47=21] 0.0pt
+4:8: ........\glue[parfillleft][16=1,17=1,47=21] 0.0pt
+4:8: ........\par[newgraf][16=1,17=1,47=21], rightskip 0.0pt plus 24.0pt, leftskip 23.98682pt, parfillskip 0.0pt plus 1.0fil, baselineskip 14.4065pt, lineskip 1.0pt
+4:8: ........\glue[indent][16=1,17=1,47=21] 0.0pt
+4:8: ........\boundary[user][16=1,17=1,47=21] 1
+4:8: ........\hbox[hbox][16=1,17=2], height 10.37268, depth 4.03381, direction l2r
+4:8: ........\penalty[user][16=1,17=1,47=21] 10000
+4:8: ........\glue[user][16=1,17=1,47=21] 0.0pt
+4:8: ........\hbox[hbox][16=1,17=1,47=21], width 1.6431, height 14.4065, direction l2r
+4:8: .........\list
+4:8: ..........\kern[explicit][16=1,17=1,47=21], amount 0.0
+4:8: ..........\hbox[hbox][16=1,17=1,47=21], width 1.6431, height 7.20325, depth 7.20325, direction l2r
+4:8: ...........\list
+4:8: ............\hbox[hbox][16=1,17=1,47=21], width 1.6431, height 7.20325, depth 7.20325, direction l2r
+4:8: .............\list
+4:8: ..............\hbox[hbox], direction l2r
+4:8: ...............\list
+4:8: ................\rule[normal]
+4:8: ..............\hbox[hbox][16=1,17=1,47=21], width 1.6431, height 7.20325, depth 7.20325, direction l2r, orientation "0, offset(0.0,-7.20325)
+4:8: ...............\list
+4:8: ................\hbox[hbox][16=1,17=1,47=21], width 1.6431, height 14.4065, direction l2r
+4:8: .................\list
+4:8: ..................\vbox[normal][16=1,17=1,47=21], width 1.6431, height 14.4065, direction l2r
+4:8: ...................\list
+4:8: ....................\kern[explicit][16=1,17=1,47=21], amount 0.0
+4:8: ....................\hbox[hbox][16=1,17=1,47=21], width 1.6431, height 10.37268, depth 4.03381, direction l2r
+4:8: .....................\list
+4:8: ......................\kern[explicit][16=1,17=1,47=21], amount -23.98682
+4:8: ......................\hbox[hbox][16=1,17=1,47=21], width 25.62991, height 10.37268, depth 4.03381, direction l2r
+4:8: .......................\list
+4:8: ........................\hbox[hbox][16=1,17=2], height 10.37268, depth 4.03381, direction l2r
+4:8: ........................\glyph[32768][16=1,17=1,47=21], language (n=1,l=2,r=3), hyphenationmode 499519, options 128 , font <12: LibertinusSans-Bold @ 12.0pt>, glyph U+00004E N
+4:8: ........................\glyph[32768][16=1,17=1,47=21], language (n=1,l=2,r=3), hyphenationmode 499519, options 128 , font <12: LibertinusSans-Bold @ 12.0pt>, glyph U+000065 e
+4:8: ........................\kern[font][16=1,17=1,47=21], amount -0.08395
+4:8: ........................\glyph[32768][16=1,17=1,47=21], language (n=1,l=2,r=3), hyphenationmode 499519, options 128 , font <12: LibertinusSans-Bold @ 12.0pt>, glyph U+000078 x
+4:8: ........................\glyph[32768][16=1,17=1,47=21], language (n=1,l=2,r=3), hyphenationmode 499519, options 128 , font <12: LibertinusSans-Bold @ 12.0pt>, glyph U+000074 t
+4:8: ......................\kern[explicit][16=1,17=1,47=21], amount 0.0
+4:8: ....................\kern[explicit][16=1,17=1,47=21], amount 0.0
+4:8: ........\penalty[user][16=1,17=1,47=21] 10000
+4:8: ........\glue[user][16=1,17=1,47=21] 0.0pt
+4:8: ........\hbox[hbox][16=1,17=2], height 10.37268, depth 4.03381, direction l2r
+4:8: ........\boundary[user][16=1,17=1,47=21] 2
+4:8: ........\penalty[line][16=1,17=1,47=21] 10000
+4:8: ........\glue[parfill][16=1,17=1,47=21] 0.0pt plus 1.0fil
+4:8: ........\glue[right][16=1,17=1,47=21] 0.0pt
+4:8: ........\glue[right hang][16=1,17=1,47=21] 0.0pt
+4:8: ..\penalty[line][16=1,17=1,47=21,50=3] 10000
+4:8: ..\glue[parfill][16=1,17=1,47=21,50=3] 0.0pt plus 1.0fil
+4:8: ..\glue[right][16=1,17=1,47=21,50=3] 0.0pt plus 24.0pt
+
+setup           > error in line 29, namespace 'offsetbox', key 'middle,'
+setup           > error in line 29, namespace 'offsetbox', key 'middle,'
+
+Overfull \hbox (112.59647pt too wide) in paragraph at lines 29--29
+ [][]  
+4:8: 
+4:8: \hbox[normal][16=1,17=1,47=21,50=3], width 331.40353, height 14.4065, depth 4.03381, direction l2r
+4:8: .\list
+4:8: ..\glue[left][16=1,17=1,47=21,50=3] 23.98682pt
+4:8: ..\glue[parfillleft][16=1,17=1,47=21,50=3] 0.0pt
+4:8: ..\par[newgraf][16=1,17=1,47=21,50=3], hangindent -112.59647, hangafter -6, hsize 444.0, rightskip 0.0pt plus 24.0pt, leftskip 23.98682pt, pretolerance 100, tolerance 1500, adjdemerits 10000, linepenalty 10, doublehyphendemerits 10000, finalhyphendemerits 5000, clubpenalty 2000, widowpenalty 2000, brokenpenalty 100, parfillskip 0.0pt plus 1.0fil, hyphenationmode 499519
+4:8: ..\whatsit[latelua][16=1,17=1,47=21,50=3]
+4:8: ... data = action=function: 0x7fa1704fdbe0 | specification={c=true | d=264360 | h=679784 | ha=-6 | hi=-7379122 | hs=29097984 | ls=1572000 | p=true | r=true | x=true | y=true}
+4:8: ..\hbox[hbox][16=1,17=1,47=21,50=3], width 420.01318, height 14.4065, depth 4.03381, direction l2r
+4:8: ...\list
+4:8: ....\whatsit[latelua][16=1,17=1,47=21]
+4:8: ....\boundary[user][16=1,17=1,20=41,47=21] 1
+4:8: ....\glyph[32768][16=1,17=1,20=41,47=21], language (n=1,l=2,r=3), hyphenationmode 499519, options 128 , font <2: LibertinusSerif-Regular @ 12.0pt>, glyph U+000000  
+4:8: ....\boundary[user][16=1,17=1,20=41,47=21] 2
+4:8: ....\vbox[normal][16=1,17=1,47=21], width 420.01318, height 14.4065, depth 4.03381, direction l2r
+4:8: .....\list
+4:8: ......\hbox[line][16=1,17=1,47=21], width 420.01318, height 14.4065, depth 4.03381, glue 417.0748fil, direction l2r
+4:8: .......\list
+4:8: ........\glue[left hang][16=1,17=1,47=21] 0.0pt
+4:8: ........\glue[left][16=1,17=1,47=21] 0.0pt
+4:8: ........\glue[parfillleft][16=1,17=1,47=21] 0.0pt
+4:8: ........\par[newgraf][16=1,17=1,47=21], rightskip 0.0pt plus 24.0pt, leftskip 23.98682pt, parfillskip 0.0pt plus 1.0fil, baselineskip 14.4065pt, lineskip 1.0pt
+4:8: ........\glue[indent][16=1,17=1,47=21] 0.0pt
+4:8: ........\boundary[user][16=1,17=1,47=21] 1
+4:8: ........\hbox[hbox][16=1,17=2], height 10.37268, depth 4.03381, direction l2r
+4:8: ........\penalty[user][16=1,17=1,47=21] 10000
+4:8: ........\glue[user][16=1,17=1,47=21] 0.0pt
+4:8: ........\hbox[hbox][16=1,17=1,47=21], width 2.93839, height 14.4065, direction l2r
+4:8: .........\list
+4:8: ..........\kern[explicit][16=1,17=1,47=21], amount 0.0
+4:8: ..........\hbox[hbox][16=1,17=1,47=21], width 2.93839, height 7.20325, depth 7.20325, direction l2r
+4:8: ...........\list
+4:8: ............\hbox[hbox][16=1,17=1,47=21], width 2.93839, height 7.20325, depth 7.20325, direction l2r
+4:8: .............\list
+4:8: ..............\hbox[hbox], direction l2r
+4:8: ...............\list
+4:8: ................\rule[normal]
+4:8: ..............\hbox[hbox][16=1,17=1,47=21], width 2.93839, height 7.20325, depth 7.20325, direction l2r, orientation "0, offset(0.0,-7.20325)
+4:8: ...............\list
+4:8: ................\hbox[hbox][16=1,17=1,47=21], width 2.93839, height 14.4065, direction l2r
+4:8: .................\list
+4:8: ..................\vbox[normal][16=1,17=1,47=21], width 2.93839, height 14.4065, direction l2r
+4:8: ...................\list
+4:8: ....................\kern[explicit][16=1,17=1,47=21], amount 0.0
+4:8: ....................\hbox[hbox][16=1,17=1,47=21], width 2.93839, height 10.37268, depth 4.03381, direction l2r
+4:8: .....................\list
+4:8: ......................\kern[explicit][16=1,17=1,47=21], amount -23.98682
+4:8: ......................\hbox[hbox][16=1,17=1,47=21], width 26.9252, height 10.37268, depth 4.03381, direction l2r
+4:8: .......................\list
+4:8: ........................\hbox[hbox][16=1,17=2], height 10.37268, depth 4.03381, direction l2r
+4:8: ........................\glyph[32768][16=1,17=1,47=21], language (n=1,l=2,r=3), hyphenationmode 499519, options 128 , font <12: LibertinusSans-Bold @ 12.0pt>, glyph U+000042 B
+4:8: ........................\glyph[32768][16=1,17=1,47=21], language (n=1,l=2,r=3), hyphenationmode 499519, options 128 , font <12: LibertinusSans-Bold @ 12.0pt>, glyph U+000061 a
+4:8: ........................\glyph[32768][16=1,17=1,47=21], language (n=1,l=2,r=3), hyphenationmode 499519, options 128 , font <12: LibertinusSans-Bold @ 12.0pt>, glyph U+000063 c
+4:8: ........................\glyph[32768][16=1,17=1,47=21], language (n=1,l=2,r=3), hyphenationmode 499519, options 128 , font <12: LibertinusSans-Bold @ 12.0pt>, glyph U+00006B k
+4:8: ......................\kern[explicit][16=1,17=1,47=21], amount 0.0
+4:8: ....................\kern[explicit][16=1,17=1,47=21], amount 0.0
+4:8: ........\penalty[user][16=1,17=1,47=21] 10000
+4:8: ........\glue[user][16=1,17=1,47=21] 0.0pt
+4:8: ........\hbox[hbox][16=1,17=2], height 10.37268, depth 4.03381, direction l2r
+4:8: ........\boundary[user][16=1,17=1,47=21] 2
+4:8: ........\penalty[line][16=1,17=1,47=21] 10000
+4:8: ........\glue[parfill][16=1,17=1,47=21] 0.0pt plus 1.0fil
+4:8: ........\glue[right][16=1,17=1,47=21] 0.0pt
+4:8: ........\glue[right hang][16=1,17=1,47=21] 0.0pt
+4:8: ..\penalty[line][16=1,17=1,47=21,50=3] 10000
+4:8: ..\glue[parfill][16=1,17=1,47=21,50=3] 0.0pt plus 1.0fil
+4:8: ..\glue[right][16=1,17=1,47=21,50=3] 0.0pt plus 24.0pt
+
+setup           > error in line 33, namespace 'offsetbox', key 'middle,'
+setup           > error in line 33, namespace 'offsetbox', key 'middle,'
+setup           > error in line 37, namespace 'offsetbox', key 'middle,'
+setup           > error in line 37, namespace 'offsetbox', key 'middle,'
+setup           > error in line 41, namespace 'offsetbox', key 'middle,'
+setup           > error in line 41, namespace 'offsetbox', key 'middle,'
+setup           > error in line 45, namespace 'offsetbox', key 'middle,'
+setup           > error in line 45, namespace 'offsetbox', key 'middle,'
+setup           > error in line 49, namespace 'offsetbox', key 'middle,'
+setup           > error in line 49, namespace 'offsetbox', key 'middle,'
+setup           > error in line 53, namespace 'offsetbox', key 'middle,'
+setup           > error in line 53, namespace 'offsetbox', key 'middle,'
+structures      > bookmark: Pairing
+structure       > sectioning > section @ level 3 : 0.7.2 -> Pairing
+pages           > flushing realpage 17, userpage 15, subpage 17
+structures      > bookmark: Replacing the Battery
+structure       > sectioning > section @ level 3 : 0.7.3 -> Replacing the Battery
+floatblocks     > '9' placed (here)
+close source    > level 2, order 14, name '7-remote.tex'
+structures      > end of sectionblock 'bodypart'
+pages           > flushing realpage 18, userpage 16, subpage 18
+structures      > begin of sectionblock 'appendix'
+open source     > level 2, order 15, name 'A-specifications.tex'
+structures      > bookmark: Specifications
+structure       > sectioning > chapter @ level 2 : 0.1 -> Specifications
+close source    > level 2, order 15, name 'A-specifications.tex'
+open source     > level 2, order 16, name 'B-regulatory.tex'
+pages           > flushing realpage 19, userpage 17, subpage 19
+pages           > flushing realpage 20, userpage 18, subpage 20
+structures      > bookmark: Remote Control Regulatory Compliance Statements
+structure       > sectioning > chapter @ level 2 : 0.2 -> Remote Control Regulatory Compliance Statements
+structures      > bookmark: FCC Information
+structure       > sectioning > section @ level 3 : 0.2.1 -> FCC Information
+structures      > bookmark: Industry Canada Information
+structure       > sectioning > section @ level 3 : 0.2.2 -> Industry Canada Information
+structures      > bookmark: European Community Compliance Information
+structure       > sectioning > section @ level 3 : 0.2.3 -> European Community Compliance Information
+pages           > flushing realpage 21, userpage 19, subpage 21
+close source    > level 2, order 16, name 'B-regulatory.tex'
+open source     > level 2, order 17, name 'revision-history.tex'
+pages           > flushing realpage 22, userpage 20, subpage 22
+structures      > bookmark: Revision History
+structure       > sectioning > chapter @ level 2 : 0.3 -> Revision History
+floatblocks     > '10' placed (here)
+close source    > level 2, order 17, name 'revision-history.tex'
+structures      > end of sectionblock 'appendix'
+pages           > flushing realpage 23, userpage 21, subpage 23
+structures      > begin of sectionblock 'backpart'
+open source     > level 2, order 18, name 'back-page.tex'
+close source    > level 2, order 18, name 'back-page.tex'
+pages           > flushing realpage 24, userpage 22, subpage 24
+structures      > end of sectionblock 'backpart'
+close source    > level 1, order 18, name '/Users/alex/go/src/github.com/adnsv/panctx/testdata/tmp/main.tex'
+backend         > bookmarks > confusing level change at level 3 around 'A Specifications'
+
+system          > start used files
+
+system          > text: main
+
+system          > stop used files
+
+
+system          > start used files
+
+system          >    1: filename=char-prv.lua filetype=tex format=tex foundname=/Users/alex/context-osx-64/tex/texmf-context/tex/context/base/mkiv/char-prv.lua fullname=/Users/alex/context-osx-64/tex/texmf-context/tex/context/base/mkiv/char-prv.lua usedmethod=database
+system          >    2: filename=lmmono10-regular filetype=otf format=otf foundname=/Users/alex/context-osx-64/tex/texmf/fonts/opentype/public/lm/lmmono10-regular.otf fullname=/Users/alex/context-osx-64/tex/texmf/fonts/opentype/public/lm/lmmono10-regular.otf usedmethod=database
+system          >    3: filename=publ-imp-default.lua filetype=scripts foundname=/Users/alex/context-osx-64/tex/texmf-context/tex/context/base/mkiv/publ-imp-default.lua fullname=/Users/alex/context-osx-64/tex/texmf-context/tex/context/base/mkiv/publ-imp-default.lua usedmethod=database
+system          >    4: filename=cont-new.mkxl filetype=tex foundname=/Users/alex/context-osx-64/tex/texmf-context/tex/context/base/mkxl/cont-new.mkxl fullname=/Users/alex/context-osx-64/tex/texmf-context/tex/context/base/mkxl/cont-new.mkxl usedmethod=database
+system          >    5: filename=lang-exc.lua filetype=scripts foundname=/Users/alex/context-osx-64/tex/texmf-context/tex/context/base/mkiv/lang-exc.lua fullname=/Users/alex/context-osx-64/tex/texmf-context/tex/context/base/mkiv/lang-exc.lua usedmethod=database
+system          >    6: filename=lang-us.lua filetype=scripts foundname=/Users/alex/context-osx-64/tex/texmf-context/tex/context/patterns/mkiv/lang-us.lua fullname=/Users/alex/context-osx-64/tex/texmf-context/tex/context/patterns/mkiv/lang-us.lua usedmethod=database
+system          >    7: filename=/Users/alex/go/src/github.com/adnsv/panctx/testdata/tmp/main.tex format=tex foundname=/Users/alex/go/src/github.com/adnsv/panctx/testdata/tmp/main.tex fullname=/Users/alex/go/src/github.com/adnsv/panctx/testdata/tmp/main.tex usedmethod=direct
+system          >    8: filename=preamble.tex format=tex foundname=preamble.tex fullname=/Users/alex/go/src/github.com/adnsv/panctx/testdata/tmp/preamble.tex usedmethod=direct
+system          >    9: filename=texgyre.lfg filetype=tex foundname=/Users/alex/context-osx-64/tex/texmf-context/tex/context/fonts/mkiv/texgyre.lfg fullname=/Users/alex/context-osx-64/tex/texmf-context/tex/context/fonts/mkiv/texgyre.lfg usedmethod=database
+system          >   10: filename=LibertinusSerif-Regular.otf filetype=otf format=otf foundname=/Users/alex/context-osx-64/tex/texmf/fonts/opentype/public/libertinus/LibertinusSerif-Regular.otf fullname=/Users/alex/context-osx-64/tex/texmf/fonts/opentype/public/libertinus/LibertinusSerif-Regular.otf usedmethod=database
+system          >   11: filename=texgyrepagella-math.otf filetype=otf format=otf foundname=/Users/alex/context-osx-64/tex/texmf/fonts/opentype/public/tex-gyre-math/texgyrepagella-math.otf fullname=/Users/alex/context-osx-64/tex/texmf/fonts/opentype/public/tex-gyre-math/texgyrepagella-math.otf usedmethod=database
+system          >   12: filename=front-page.tex format=tex foundname=front-page.tex fullname=/Users/alex/go/src/github.com/adnsv/panctx/testdata/tmp/front-page.tex usedmethod=direct
+system          >   13: filename=metafun.mpxl filetype=mp foundname=/Users/alex/context-osx-64/tex/texmf-context/metapost/context/base/mpxl/metafun.mpxl fullname=/Users/alex/context-osx-64/tex/texmf-context/metapost/context/base/mpxl/metafun.mpxl usedmethod=database
+system          >   14: filename=mp-base.mpxl filetype=mp foundname=/Users/alex/context-osx-64/tex/texmf-context/metapost/context/base/mpxl/mp-base.mpxl fullname=/Users/alex/context-osx-64/tex/texmf-context/metapost/context/base/mpxl/mp-base.mpxl usedmethod=database
+system          >   15: filename=mp-tool.mpxl filetype=mp foundname=/Users/alex/context-osx-64/tex/texmf-context/metapost/context/base/mpxl/mp-tool.mpxl fullname=/Users/alex/context-osx-64/tex/texmf-context/metapost/context/base/mpxl/mp-tool.mpxl usedmethod=database
+system          >   16: filename=mp-luas.mpxl filetype=mp foundname=/Users/alex/context-osx-64/tex/texmf-context/metapost/context/base/mpxl/mp-luas.mpxl fullname=/Users/alex/context-osx-64/tex/texmf-context/metapost/context/base/mpxl/mp-luas.mpxl usedmethod=database
+system          >   17: filename=mp-mlib.mpxl filetype=mp foundname=/Users/alex/context-osx-64/tex/texmf-context/metapost/context/base/mpxl/mp-mlib.mpxl fullname=/Users/alex/context-osx-64/tex/texmf-context/metapost/context/base/mpxl/mp-mlib.mpxl usedmethod=database
+system          >   18: filename=mp-math.mpxl filetype=mp foundname=/Users/alex/context-osx-64/tex/texmf-context/metapost/context/base/mpxl/mp-math.mpxl fullname=/Users/alex/context-osx-64/tex/texmf-context/metapost/context/base/mpxl/mp-math.mpxl usedmethod=database
+system          >   19: filename=mp-cont.mpxl filetype=mp foundname=/Users/alex/context-osx-64/tex/texmf-context/metapost/context/base/mpxl/mp-cont.mpxl fullname=/Users/alex/context-osx-64/tex/texmf-context/metapost/context/base/mpxl/mp-cont.mpxl usedmethod=database
+system          >   20: filename=mp-page.mpxl filetype=mp foundname=/Users/alex/context-osx-64/tex/texmf-context/metapost/context/base/mpxl/mp-page.mpxl fullname=/Users/alex/context-osx-64/tex/texmf-context/metapost/context/base/mpxl/mp-page.mpxl usedmethod=database
+system          >   21: filename=mp-butt.mpxl filetype=mp foundname=/Users/alex/context-osx-64/tex/texmf-context/metapost/context/base/mpxl/mp-butt.mpxl fullname=/Users/alex/context-osx-64/tex/texmf-context/metapost/context/base/mpxl/mp-butt.mpxl usedmethod=database
+system          >   22: filename=mp-shap.mpxl filetype=mp foundname=/Users/alex/context-osx-64/tex/texmf-context/metapost/context/base/mpxl/mp-shap.mpxl fullname=/Users/alex/context-osx-64/tex/texmf-context/metapost/context/base/mpxl/mp-shap.mpxl usedmethod=database
+system          >   23: filename=mp-grph.mpxl filetype=mp foundname=/Users/alex/context-osx-64/tex/texmf-context/metapost/context/base/mpxl/mp-grph.mpxl fullname=/Users/alex/context-osx-64/tex/texmf-context/metapost/context/base/mpxl/mp-grph.mpxl usedmethod=database
+system          >   24: filename=mp-grid.mpxl filetype=mp foundname=/Users/alex/context-osx-64/tex/texmf-context/metapost/context/base/mpxl/mp-grid.mpxl fullname=/Users/alex/context-osx-64/tex/texmf-context/metapost/context/base/mpxl/mp-grid.mpxl usedmethod=database
+system          >   25: filename=mp-form.mpxl filetype=mp foundname=/Users/alex/context-osx-64/tex/texmf-context/metapost/context/base/mpxl/mp-form.mpxl fullname=/Users/alex/context-osx-64/tex/texmf-context/metapost/context/base/mpxl/mp-form.mpxl usedmethod=database
+system          >   26: filename=mp-figs.mpxl filetype=mp foundname=/Users/alex/context-osx-64/tex/texmf-context/metapost/context/base/mpxl/mp-figs.mpxl fullname=/Users/alex/context-osx-64/tex/texmf-context/metapost/context/base/mpxl/mp-figs.mpxl usedmethod=database
+system          >   27: filename=mp-func.mpxl filetype=mp foundname=/Users/alex/context-osx-64/tex/texmf-context/metapost/context/base/mpxl/mp-func.mpxl fullname=/Users/alex/context-osx-64/tex/texmf-context/metapost/context/base/mpxl/mp-func.mpxl usedmethod=database
+system          >   28: filename=mp-node.mpxl filetype=mp foundname=/Users/alex/context-osx-64/tex/texmf-context/metapost/context/base/mpxl/mp-node.mpxl fullname=/Users/alex/context-osx-64/tex/texmf-context/metapost/context/base/mpxl/mp-node.mpxl usedmethod=database
+system          >   29: filename=mp-apos.mpxl filetype=mp foundname=/Users/alex/context-osx-64/tex/texmf-context/metapost/context/base/mpxl/mp-apos.mpxl fullname=/Users/alex/context-osx-64/tex/texmf-context/metapost/context/base/mpxl/mp-apos.mpxl usedmethod=database
+system          >   30: filename=mp-abck.mpxl filetype=mp foundname=/Users/alex/context-osx-64/tex/texmf-context/metapost/context/base/mpxl/mp-abck.mpxl fullname=/Users/alex/context-osx-64/tex/texmf-context/metapost/context/base/mpxl/mp-abck.mpxl usedmethod=database
+system          >   31: filename=mp-asnc.mpxl filetype=mp foundname=/Users/alex/context-osx-64/tex/texmf-context/metapost/context/base/mpxl/mp-asnc.mpxl fullname=/Users/alex/context-osx-64/tex/texmf-context/metapost/context/base/mpxl/mp-asnc.mpxl usedmethod=database
+system          >   32: filename=mp-blob.mpxl filetype=mp foundname=/Users/alex/context-osx-64/tex/texmf-context/metapost/context/base/mpxl/mp-blob.mpxl fullname=/Users/alex/context-osx-64/tex/texmf-context/metapost/context/base/mpxl/mp-blob.mpxl usedmethod=database
+system          >   33: filename=mp-lmtx.mpxl filetype=mp foundname=/Users/alex/context-osx-64/tex/texmf-context/metapost/context/base/mpxl/mp-lmtx.mpxl fullname=/Users/alex/context-osx-64/tex/texmf-context/metapost/context/base/mpxl/mp-lmtx.mpxl usedmethod=database
+system          >   34: filename=mp-text.mpxl filetype=mp foundname=/Users/alex/context-osx-64/tex/texmf-context/metapost/context/base/mpxl/mp-text.mpxl fullname=/Users/alex/context-osx-64/tex/texmf-context/metapost/context/base/mpxl/mp-text.mpxl usedmethod=database
+system          >   35: filename=LibertinusSans-Regular.otf filetype=otf format=otf foundname=/Users/alex/context-osx-64/tex/texmf/fonts/opentype/public/libertinus/LibertinusSans-Regular.otf fullname=/Users/alex/context-osx-64/tex/texmf/fonts/opentype/public/libertinus/LibertinusSans-Regular.otf usedmethod=database
+system          >   36: filename=lpdf-pdx.xml filetype=tex foundname=/Users/alex/context-osx-64/tex/texmf-context/tex/context/base/mkiv/lpdf-pdx.xml fullname=/Users/alex/context-osx-64/tex/texmf-context/tex/context/base/mkiv/lpdf-pdx.xml usedmethod=database
+system          >   37: filename=legal-page.tex format=tex foundname=legal-page.tex fullname=/Users/alex/go/src/github.com/adnsv/panctx/testdata/tmp/legal-page.tex usedmethod=direct
+system          >   38: filename=contents-chapter-section.tex format=tex foundname=contents-chapter-section.tex fullname=/Users/alex/go/src/github.com/adnsv/panctx/testdata/tmp/contents-chapter-section.tex usedmethod=direct
+system          >   39: filename=LibertinusSans-Bold.otf filetype=otf format=otf foundname=/Users/alex/context-osx-64/tex/texmf/fonts/opentype/public/libertinus/LibertinusSans-Bold.otf fullname=/Users/alex/context-osx-64/tex/texmf/fonts/opentype/public/libertinus/LibertinusSans-Bold.otf usedmethod=database
+system          >   40: filename=0-info.tex format=tex foundname=0-info.tex fullname=/Users/alex/go/src/github.com/adnsv/panctx/testdata/tmp/0-info.tex usedmethod=direct
+system          >   41: filename=1-getting-started.tex format=tex foundname=1-getting-started.tex fullname=/Users/alex/go/src/github.com/adnsv/panctx/testdata/tmp/1-getting-started.tex usedmethod=direct
+system          >   42: filename=2-overview.tex format=tex foundname=2-overview.tex fullname=/Users/alex/go/src/github.com/adnsv/panctx/testdata/tmp/2-overview.tex usedmethod=direct
+system          >   43: filename=LibertinusSerif-Bold.otf filetype=otf format=otf foundname=/Users/alex/context-osx-64/tex/texmf/fonts/opentype/public/libertinus/LibertinusSerif-Bold.otf fullname=/Users/alex/context-osx-64/tex/texmf/fonts/opentype/public/libertinus/LibertinusSerif-Bold.otf usedmethod=database
+system          >   44: filename=3-probe.tex format=tex foundname=3-probe.tex fullname=/Users/alex/go/src/github.com/adnsv/panctx/testdata/tmp/3-probe.tex usedmethod=direct
+system          >   45: filename=4-tablet.tex format=tex foundname=4-tablet.tex fullname=/Users/alex/go/src/github.com/adnsv/panctx/testdata/tmp/4-tablet.tex usedmethod=direct
+system          >   46: filename=/Users/alex/context-osx-64/tex/texmf-cache/luatex-cache/context/5fe67e0bfe781ce0dde776fb1556f32e/schemes/http-www-w3-org-Graphics-SVG-1-1-DTD-svg11-tiny.dtd foundname=/Users/alex/context-osx-64/tex/texmf-cache/luatex-cache/context/5fe67e0bfe781ce0dde776fb1556f32e/schemes/http-www-w3-org-Graphics-SVG-1-1-DTD-svg11-tiny.dtd fullname=/Users/alex/context-osx-64/tex/texmf-cache/luatex-cache/context/5fe67e0bfe781ce0dde776fb1556f32e/schemes/http-www-w3-org-Graphics-SVG-1-1-DTD-svg11-tiny.dtd usedmethod=direct
+system          >   47: filename=5-batteries.tex format=tex foundname=5-batteries.tex fullname=/Users/alex/go/src/github.com/adnsv/panctx/testdata/tmp/5-batteries.tex usedmethod=direct
+system          >   48: filename=6-charger.tex format=tex foundname=6-charger.tex fullname=/Users/alex/go/src/github.com/adnsv/panctx/testdata/tmp/6-charger.tex usedmethod=direct
+system          >   49: filename=7-remote.tex format=tex foundname=7-remote.tex fullname=/Users/alex/go/src/github.com/adnsv/panctx/testdata/tmp/7-remote.tex usedmethod=direct
+system          >   50: filename=A-specifications.tex format=tex foundname=A-specifications.tex fullname=/Users/alex/go/src/github.com/adnsv/panctx/testdata/tmp/A-specifications.tex usedmethod=direct
+system          >   51: filename=B-regulatory.tex format=tex foundname=B-regulatory.tex fullname=/Users/alex/go/src/github.com/adnsv/panctx/testdata/tmp/B-regulatory.tex usedmethod=direct
+system          >   52: filename=revision-history.tex format=tex foundname=revision-history.tex fullname=/Users/alex/go/src/github.com/adnsv/panctx/testdata/tmp/revision-history.tex usedmethod=direct
+system          >   53: filename=back-page.tex format=tex foundname=back-page.tex fullname=/Users/alex/go/src/github.com/adnsv/panctx/testdata/tmp/back-page.tex usedmethod=direct
+
+system          > stop used files
+
+
+system          > start commandline options
+
+system          > currentrun="1"
+system          > fulljobname="/Users/alex/go/src/github.com/adnsv/panctx/testdata/tmp/main.tex"
+system          > input="/Users/alex/go/src/github.com/adnsv/panctx/testdata/tmp/main.tex"
+system          > kindofrun="1"
+system          > maxnofruns="9"
+system          > texmfbinpath="/Users/alex/context-osx-64/tex/texmf-osx-64/bin"
+
+system          > stop commandline options
+
+
+system          > start commandline files
+
+system          >    1: /Users/alex/go/src/github.com/adnsv/panctx/testdata/tmp/main.tex
+
+system          > stop commandline files
+
+
+modules         > start used modules
+
+
+modules         > stop used modules
+
+
+mkiv lua stats  > scheme handling time: 1.213 seconds, 2 processed, threshold 86400 seconds, loaded: http:1, reused: http:1
+mkiv lua stats  > used config file: selfautoparent:/texmf/web2c/texmfcnf.lua
+mkiv lua stats  > used cache path: /Users/alex/context-osx-64/tex/texmf-cache/luatex-cache/context/5fe67e0bfe781ce0dde776fb1556f32e
+mkiv lua stats  > resource resolver: loadtime 0.004 seconds, 0 scans with scantime 0.000 seconds, 0 shared scans, 53 found files, scanned paths: <none>
+mkiv lua stats  > stored bytecode data: 488 modules (0.248 sec), 99 tables (0.013 sec), 587 chunks (0.260 sec)
+mkiv lua stats  > traced context: maxstack: 1573, freed: 3, unreachable: 1570
+mkiv lua stats  > cleaned up reserved nodes: 93 nodes, 11 lists of 433
+mkiv lua stats  > node memory usage: 21 attribute, 6 attribute_list, 4 glue, 62 glue_spec, 3 kern, 8 penalty, 2 temp, 29 whatsit
+mkiv lua stats  > node list callback tasks: 8 unique task lists, 7 instances (re)created, 5983 calls
+mkiv lua stats  > h-node processing time: 0.064 seconds including kernel
+mkiv lua stats  > driver time: 0.042 seconds 
+mkiv lua stats  > used backend: pdf (backend for directly generating pdf output)
+mkiv lua stats  > jobdata time: 0.011 seconds saving, 0.003 seconds loading
+mkiv lua stats  > callbacks: internal: 0, file: 0, direct: 0, late: 0, function 0, total: 0 (0 per page)
+mkiv lua stats  > randomizer: resumed with value 0.44403909667287
+mkiv lua stats  > positions: 224 collected, 214 regular, 10 special
+mkiv lua stats  > v-node processing time: 0.013 seconds 
+mkiv lua stats  > loaded patterns: en::1, load time: 0.000
+mkiv lua stats  > interactive elements: 56 references, 58 destinations
+mkiv lua stats  > loaded fonts: 6 files: libertinussans-bold.otf, libertinussans-regular.otf, libertinusserif-bold.otf, libertinusserif-regular.otf, lmmono10-regular.otf, texgyrepagella-math.otf
+mkiv lua stats  > font engine: otf 3.113, afm 1.513, tfm 1.000, 14 instances, 6 shared in backend, 0 common vectors, 6 common hashes, load time 1.136 seconds 
+mkiv lua stats  > metapost: 1.754 seconds, loading: 0.102, execution: 1.753, n: 25, average: 0.144, instances: 2, luacalls: 26288 (file: 25145, text: 0, script: 861, log: 282), memory: 7.647 M
+
+metapost        > svg > start used svg fonts
+
+metapost        > svg > apos-normal-normal
+metapost        > svg > serif-normal-normal
+
+metapost        > svg > stop used svg fonts
+
+mkiv lua stats  > used svg fonts: apos-normal-normal serif-normal-normal
+mkiv lua stats  > graphics processing time: 1.841 seconds including tex, 46 processed images, 20 unique asked, 19 bad names
+mkiv lua stats  > pdf annotations: 56 links (56 unique), 0 special
+mkiv lua stats  > font embedding time: 0.015 seconds, 4 fonts
+mkiv lua stats  > result saved in file: main.pdf, compresslevel 1, objectcompresslevel 3
+mkiv lua stats  > used platform: osx-64, type: unix, binary subtree: texmf-osx-64
+mkiv lua stats  > used engine: luametatex version: 2.0908, functionality level: 20210503, format id: 570, compiler: clang
+mkiv lua stats  > tex properties: 740033 hash slots used of 2097152, 46570 control sequences, approximate memory usage: 29 MB
+mkiv lua stats  > lua properties: engine: lua 5.4, used memory: 101 MB, ctx: 98 MB, max: 98 MB, symbol mask: utf (τεχ)
+mkiv lua stats  > runtime: 1.814 seconds, 24 processed pages, 24 shipped pages, 13.233 pages/second

@@ -1,0 +1,130 @@
+\setupcolors[state=start]
+
+\definecolor[tesclr][c=.64, m=.43, y=.08]
+
+\definefontfamily [mainface] [rm] [Libertinus Serif]
+\definefontfamily [mainface] [ss] [Libertinus Sans]  [features={default, quality}]
+%\definefontfamily [mainface] [tt] [Libertinus Mono] [features={default, quality}]
+\definefontfamily [mainface] [tt] [DejaVu Sans Mono] [features={default, quality},rscale=0.77]
+\definefontfamily [mainface] [mm] [TeX Gyre Pagella Math]
+
+\setupbodyfont[mainface, 12pt]
+
+\setuppapersize[letter][letter]
+\setuplayout[backspace=84pt,width=444pt,topspace=24pt,height=744pt]
+
+\setuppagenumbering[location={footer,middle}]
+
+\placebookmarks[chapter, section, subsection, subsubsection, subsubsubsection, subsubsubsubsection][chapter, section]
+
+\setupitaliccorrection[global, always]
+
+\setuphead[chapter] [
+  style=\ss\bfd,
+  color=tesclr,
+  distance=1.5em,
+  page=yes,
+  before=\hairline\blank,
+  after=\nowhitespace\hairline
+]
+
+\setuphead[section][style=\ss\bfb,after={\pagebreak[no]}]
+\setuphead[subsection][style=\ss\bfa]
+\setuphead[subsubsection][style=\ss\bf]
+\setuphead[subsection, subsubsection, subsubsubsection, subsubsubsubsection][number=no]
+ 
+\setupwhitespace[medium] % inter-paragraph spacing
+\setupalign[flushleft] % regular paragraphs are flush left
+\setupblank[medium]
+
+\setuptolerance[vertical, verytolerant] % vertical space tolerance for pagination
+
+\setupitemize[style=bold]
+\setupitemize[autointro] % prevent orphan list intro
+
+\setupxtable[
+  loffset=3pt,
+  roffset=3pt,
+  toffset=3pt,
+  boffset=3pt,
+  split=yes,
+  header=repeat,
+  footer=repeat,
+  frame=off, 
+  framecolor=tesclr,
+]
+\setupxtable[head][
+  foregroundstyle=\ss,
+  foregroundcolor=tesclr,
+  topframe=on,
+  bottomframe=on,
+  toffset=1pt,
+  boffset=1pt,
+]
+\setupxtable[body][
+]
+\setupxtable[lastbody][
+  bottomframe=on,
+]
+\setupxtable[foot][
+  bottomframe=on,
+]
+
+
+\setupfloat[figure][default={here}]
+\setupfloat[table][default={here}]
+%\setupfloat[figure][default={here,nonumber}]
+%\setupfloat[table][default={here,nonumber}]
+
+\setupcaptions[
+    style={\tfx}, 
+    headstyle=\ss\bf, 
+    stopper={.}]
+
+\define[1]\descriptionHeadCommand
+  {\offset[leftoffset=-2em,location=right,middle]{#1}}
+
+\definedescription[description][
+  alternative=top, 
+  headstyle=\ss\bf, 
+  margin=2em,
+  inbetween=,
+  headcommand=\descriptionHeadCommand
+]
+
+\setupinteraction[state=start,focus=standard,color=,contrastcolor=]
+\placebookmarks[chapter,section,subsection]
+
+\definecolor[notebgclr][c=0.04, m=.03, y=.01]
+\definecolor[notefrclr][c=.6, m=.4, y=.04]
+\definecolor[warnbgclr][c=0, m=.05, y=.03]
+\definecolor[warnfrclr][c=0, m=.6, y=.5]
+
+\definedescription[NOTE][
+  headstyle=\ss\bf,
+  width=fit,
+  before={\blank[medium]\startframedtext[
+    width=max,
+    framecolor=notefrclr,
+    background=color,
+    backgroundcolor=notebgclr,
+    leftframe=off,rightframe=off,
+    offset=4pt,
+  ]},
+  after={\stopframedtext\blank[medium]},
+]
+
+\definedescription[WARNING][
+  headstyle=\ss\bf,
+  width=fit,
+  before={\blank[medium]\startframedtext[
+    width=max,
+    framecolor=warnfrclr,
+    background=color,
+    backgroundcolor=warnbgclr,
+    leftframe=off,rightframe=off,
+    offset=4pt,
+  ]},
+  after={\stopframedtext\blank[medium]},
+]
+
