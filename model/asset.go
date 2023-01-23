@@ -16,8 +16,8 @@ const (
 )
 
 type FileAsset struct {
-	AbsSrcFilePath  string
 	Type            AssetType
+	AbsSrcFilePath  string
 	RelWorkFilePath string
 	SrcContent      []byte
 	PandocDOM       *pandoc.Document

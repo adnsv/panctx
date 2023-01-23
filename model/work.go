@@ -51,8 +51,6 @@ func (prj *Project) processAsset(a *FileAsset) error {
 		return nil
 	}
 
-	targetFN := filepath.Join(prj.WorkDir, a.RelWorkFilePath)
-
 	switch a.Type {
 	case AssetIgnore:
 		log.Printf("ignoring %s\n", a.AbsSrcFilePath)
@@ -60,10 +58,12 @@ func (prj *Project) processAsset(a *FileAsset) error {
 
 	case AssetCopy:
 		log.Printf("copying %s -> %s\n", a.AbsSrcFilePath, a.RelWorkFilePath)
-		if _, e := os.Stat(targetFN); e == nil {
-			os.Remove(targetFN)
+		if filesystem.FileExists(a.RelWorkFilePath) {
+			if err := os.Remove(a.RelWorkFilePath); err != nil {
+				return err
+			}
 		}
-		err := os.Link(a.AbsSrcFilePath, targetFN)
+		err := os.Link(a.AbsSrcFilePath, a.RelWorkFilePath)
 		return err
 
 	case AssetScanReplace:
@@ -78,7 +78,7 @@ func (prj *Project) processAsset(a *FileAsset) error {
 					return "", fmt.Errorf("unknown variable: %s", v)
 				}
 			} else if k == "template" {
-				from_asset := prj.templateAssets[v]
+				from_asset := prj.TemplateAssets[v]
 				if from_asset == nil {
 					return "<MISSING>", fmt.Errorf("cannot resolve reference '%s:%s'", k, v)
 				}
@@ -89,7 +89,7 @@ func (prj *Project) processAsset(a *FileAsset) error {
 			} else {
 				// handle as file
 				from_fn := normalizePath(baseDIR, v)
-				from_asset := prj.fileAssets[from_fn]
+				from_asset := prj.FileAssets[from_fn]
 
 				if from_asset == nil {
 					return "<MISSING>", fmt.Errorf("cannot resolve reference '%s:%s'", k, v)
@@ -100,7 +100,7 @@ func (prj *Project) processAsset(a *FileAsset) error {
 				return from_asset.RelWorkFilePath, nil
 			}
 		})
-		err := filesystem.WriteFileIfChanged(targetFN, out)
+		err := filesystem.WriteFileIfChanged(a.RelWorkFilePath, out)
 		return err
 
 	case AssetPandoc:
@@ -124,8 +124,8 @@ func (prj *Project) processAsset(a *FileAsset) error {
 			return err
 		}
 		w.WriteBlocks(flow)
-		log.Printf("- writing %s\n", targetFN)
-		err = filesystem.WriteFileIfChanged(targetFN, out.Bytes())
+		log.Printf("- writing %s\n", a.RelWorkFilePath)
+		err = filesystem.WriteFileIfChanged(a.RelWorkFilePath, out.Bytes())
 		if err != nil {
 			return err
 		}
@@ -133,10 +133,12 @@ func (prj *Project) processAsset(a *FileAsset) error {
 	case AssetSVG:
 		// todo: reprocess content
 		log.Printf("copying %s -> %s\n", a.AbsSrcFilePath, a.RelWorkFilePath)
-		if _, e := os.Stat(targetFN); e == nil {
-			os.Remove(targetFN)
+		if filesystem.FileExists(a.RelWorkFilePath) {
+			if err := os.Remove(a.RelWorkFilePath); err != nil {
+				return err
+			}
 		}
-		err := os.Link(a.AbsSrcFilePath, targetFN)
+		err := os.Link(a.AbsSrcFilePath, a.RelWorkFilePath)
 		return err
 	}
 	return nil

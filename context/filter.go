@@ -18,10 +18,6 @@ func (f *Filter) ChooseOutputName(a *model.FileAsset) string {
 	}
 }
 
-func (f *Filter) ProcessAsset(a *model.FileAsset, workDIR string) error {
-
-}
-
 func replaceEXT(fn, newEXT string) string {
 	return fn[:len(fn)-len(filepath.Ext(fn))] + newEXT
 }

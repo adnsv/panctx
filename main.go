@@ -8,7 +8,6 @@ import (
 	"strings"
 
 	"github.com/adnsv/panctx/context"
-	modelv2 "github.com/adnsv/panctx/model-v2"
 	cli "github.com/jawher/mow.cli"
 )
 

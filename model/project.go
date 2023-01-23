@@ -21,3 +21,13 @@ type Target struct {
 	Output      string            `yaml:"output"`
 	Definitions map[string]string `yaml:"definitions"`
 }
+
+func NewProject() *Project {
+	return &Project{
+		Definitions:    map[string]string{},
+		Targets:        map[string]*Target{},
+		Layouts:        map[string]string{},
+		TemplateAssets: map[string]*FileAsset{},
+		FileAssets:     map[string]*FileAsset{},
+	}
+}
