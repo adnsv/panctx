@@ -555,10 +555,10 @@ func (w *Writer) WriteInlines(ll pandoc.InlineList) {
 
 				w.wr("\\goto{")
 				w.WriteInlines(l.Content)
-				w.wr("}[")
+				w.wr("}[url(")
 				s := strings.TrimPrefix(l.Target.URL, "#")
 				w.wr(s)
-				w.wr(("]"))
+				w.wr((")]"))
 			}
 
 			// todo Link, Cite, Span
