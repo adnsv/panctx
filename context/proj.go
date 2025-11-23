@@ -1,3 +1,5 @@
+// Package context provides the core conversion logic for panctx, handling template
+// configuration, Markdown to ConTeXt conversion, and PDF generation.
 package context
 
 import (
@@ -15,32 +17,41 @@ import (
 	"gopkg.in/yaml.v3"
 )
 
+// Project represents a document conversion project, managing template configuration,
+// asset processing, and PDF generation. It coordinates the conversion pipeline from
+// Markdown through ConTeXt to PDF.
 type Project struct {
-	MainDir   string
-	ConfigDir string
-	WorkDir   string
+	MainDir   string // Directory containing the main input file
+	ConfigDir string // Directory containing the template configuration
+	WorkDir   string // Working directory for intermediate files
 
-	Definitions    map[string]string
-	Layouts        map[string]string
-	MarkdownAssets []*MarkdownAsset
-	TemplateAssets []*TemplateAsset
+	Definitions    map[string]string // Variable definitions for template substitution
+	Layouts        map[string]string // Page layout configurations mapped by page size
+	MarkdownAssets []*MarkdownAsset  // Markdown files to be converted
+	TemplateAssets []*TemplateAsset  // Template assets to be processed
 
-	mainBuf   []byte
-	mainDstFN string
+	mainBuf   []byte // Buffer containing the main input file content
+	mainDstFN string // Destination path for the processed main file
 }
 
+// MarkdownAsset represents a Markdown file asset that will be converted to ConTeXt.
+// It tracks the source file, destination file, Pandoc JSON buffer, and parsed document.
 type MarkdownAsset struct {
-	srcFN string
-	dstFN string
-	jbuf  []byte
-	d     *pandoc.Document
+	srcFN string            // Source Markdown file path
+	dstFN string            // Destination ConTeXt file path
+	jbuf  []byte            // Pandoc JSON output buffer
+	d     *pandoc.Document  // Parsed Pandoc document
 }
 
+// TemplateAsset represents a template file asset that will be processed and copied
+// to the working directory with variable substitution applied.
 type TemplateAsset struct {
-	srcFN string
-	dstFN string
+	srcFN string // Source template file path
+	dstFN string // Destination file path in working directory
 }
 
+// NewProject creates a new Project instance with the specified working directory.
+// It initializes empty maps for Definitions and Layouts.
 func NewProject(workdir string) *Project {
 	return &Project{
 		WorkDir:     workdir,
@@ -49,6 +60,9 @@ func NewProject(workdir string) *Project {
 	}
 }
 
+// LoadConfig loads the template configuration from a YAML file. It parses variable
+// definitions, page layouts, and asset paths. Template assets are validated and
+// registered for processing.
 func (prj *Project) LoadConfig(fn string) (err error) {
 	log.Printf("loading template config from %s\n", fn)
 	buf, err := os.ReadFile(fn)
@@ -101,6 +115,9 @@ func (prj *Project) LoadConfig(fn string) (err error) {
 
 var re = regexp.MustCompile(`(?m)\$<((?:[^>\$])*)>\$`)
 
+// LoadMain loads the main input file and scans it for Markdown asset references.
+// For each Markdown asset found, it converts it to Pandoc JSON format and extracts
+// metadata into the project's Definitions map.
 func (prj *Project) LoadMain(fn string) (err error) {
 	log.Printf("loading main from %s\n", fn)
 	prj.mainBuf, err = os.ReadFile(fn)
@@ -153,6 +170,9 @@ func (prj *Project) LoadMain(fn string) (err error) {
 	return
 }
 
+// replaceContent performs variable and asset path substitution on the given buffer.
+// It replaces $<var:name>$, $<template:path>$, and $<markdown:path>$ placeholders
+// with their corresponding values or file paths.
 func (prj *Project) replaceContent(buf []byte) []byte {
 	return re.ReplaceAllFunc(buf, func(v []byte) []byte {
 		s := string(v)
@@ -202,6 +222,9 @@ func (prj *Project) replaceContent(buf []byte) []byte {
 	})
 }
 
+// Process converts all assets and generates ConTeXt output files. It processes the main
+// file, template assets, and Markdown assets, writing the results to the working directory.
+// Markdown assets are converted from Pandoc AST to ConTeXt format.
 func (prj *Project) Process() (err error) {
 	log.Printf("processing main file")
 
@@ -247,6 +270,9 @@ func (prj *Project) Process() (err error) {
 	return nil
 }
 
+// BuildPDF generates a PDF file from the processed ConTeXt files by executing the
+// context command. It returns the path to the generated PDF file or an error if
+// the conversion fails.
 func (prj *Project) BuildPDF() (pdf string, err error) {
 	pdf = strings.TrimSuffix(prj.mainDstFN, filepath.Ext(prj.mainDstFN)) + ".pdf"
 	log.Printf("generating PDF -> %s\n", pdf)
@@ -269,6 +295,9 @@ func (prj *Project) BuildPDF() (pdf string, err error) {
 	return
 }
 
+// normalizePath converts a file path to an absolute path using forward slashes.
+// If the path is relative, it is resolved relative to refdir. The resulting path
+// is converted to use forward slashes for cross-platform compatibility.
 func normalizePath(refdir string, fn string) (string, error) {
 	if fn == "" {
 		return fn, nil

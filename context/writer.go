@@ -11,20 +11,28 @@ import (
 	"github.com/adnsv/go-pandoc"
 )
 
+// Writer converts Pandoc AST elements to ConTeXt markup. It maintains state during
+// conversion including block separation, inline mode, and heading levels.
 type Writer struct {
-	out         io.Writer
-	indir       string
-	blockSep    string
-	forceInline int
-	topLevel    int
+	out         io.Writer // Output writer for ConTeXt markup
+	indir       string    // Input directory for resolving relative paths
+	blockSep    string    // Separator to insert before next block
+	forceInline int       // Counter for forcing inline image placement
+	topLevel    int       // Top-level heading mapping (0=part, 1=chapter, 2=section)
 
-	DefaultExternalFigureSize string // used to constrain externalfigure size when neigher its width nor height is specified
+	DefaultExternalFigureSize string // Default size constraint for external figures
 }
 
+// NewWriter creates a new Writer instance that writes ConTeXt markup to w.
+// The indir parameter specifies the input directory for resolving relative image paths.
+// The default top-level heading is set to chapter (level 1).
 func NewWriter(w io.Writer, indir string) *Writer {
 	return &Writer{out: w, indir: indir, topLevel: 1}
 }
 
+// SetTopLevelDivision sets the top-level heading division for Markdown level 1 headings.
+// Valid values are "part" (level 0), "chapter" (level 1), or "section" (level 2).
+// Invalid values default to "section".
 func (w *Writer) SetTopLevelDivision(s string) {
 	switch s {
 	case "part":
@@ -38,6 +46,8 @@ func (w *Writer) SetTopLevelDivision(s string) {
 	}
 }
 
+// resolveImageTarget converts a relative image URL to an absolute path.
+// Relative paths are resolved relative to the input directory.
 func (w *Writer) resolveImageTarget(url string) string {
 	if !filepath.IsAbs(url) {
 		a, err := filepath.Abs(filepath.Join(w.indir, url))
@@ -48,10 +58,13 @@ func (w *Writer) resolveImageTarget(url string) string {
 	return filepath.ToSlash(url)
 }
 
+// wr writes a string to the output writer.
 func (w *Writer) wr(s string) {
 	fmt.Fprint(w.out, s)
 }
 
+// makeHeading generates the appropriate ConTeXt heading command for a given Markdown
+// heading level. It adjusts the level based on the top-level division setting.
 func (w *Writer) makeHeading(lvl int) string {
 	lvl += w.topLevel
 	switch lvl {
@@ -67,6 +80,8 @@ func (w *Writer) makeHeading(lvl int) string {
 	}
 }
 
+// writeRow outputs a table row with the specified style. It handles cell alignment
+// and column spanning using ConTeXt's xtable system.
 func (w *Writer) writeRow(table *pandoc.Table, row *pandoc.Row, style string) {
 	if style != "" {
 		style = "[" + style + "]"
@@ -97,6 +112,8 @@ func (w *Writer) writeRow(table *pandoc.Table, row *pandoc.Row, style string) {
 	w.wr("\n\\stopxrow")
 }
 
+// writeTable converts a Pandoc table to ConTeXt's xtable format. It handles table
+// headers, bodies, footers, and captions.
 func (w *Writer) writeTable(table *pandoc.Table) {
 	w.wr("\\startplacetable[")
 	if table.Caption == nil {
@@ -150,6 +167,9 @@ func (w *Writer) writeTable(table *pandoc.Table) {
 	w.wr("\n\\stopplacetable")
 }
 
+// writeDiv processes Pandoc Div blocks with special class handling for layout features.
+// Supports HSTACK (horizontal layout), narrower (text narrowing), combination
+// (figure combination), and columns (multi-column layout).
 func (w *Writer) writeDiv(div *pandoc.Div) {
 	kv := div.Attr.KeyValMap()
 	w.blockSep = ""
@@ -197,39 +217,97 @@ func (w *Writer) writeDiv(div *pandoc.Div) {
 	}
 }
 
-func (w *Writer) handleAdmonition(ll pandoc.InlineList) bool {
-	if len(ll) < 3 {
+// handleAlert detects GitHub-style alert syntax in blockquotes:
+// > [!NOTE]
+// > Content here
+func (w *Writer) handleAlert(blocks []pandoc.Block) bool {
+	if len(blocks) == 0 {
 		return false
 	}
 
-	f, ok := ll[0].(*pandoc.Formatted)
-	if !ok {
-		return false
-	}
-	_, ok = ll[1].(*pandoc.Space)
+	// First block should be a paragraph
+	para, ok := blocks[0].(*pandoc.Para)
 	if !ok {
 		return false
 	}
 
-	if f.Fmt == pandoc.Strong {
-		if len(f.Content) == 1 {
-			if s, ok := f.Content[0].(*pandoc.Str); ok && len(s.Text) > 2 && s.Text[0] == '!' {
-				p := s.Text[1:]
-				ft := "NOTE"
-				if p[0] == '!' {
-					p = p[1:]
-					ft = "WARNING"
-				}
-				w.wr("\\start" + ft + "{" + EscapeStr(p) + "}\n")
-				w.WriteInlines(ll[2:])
-				w.wr("\n\\stop" + ft)
-				return true
-			}
-		}
+	// Check if first inline matches [!TYPE] pattern
+	if len(para.Inlines) == 0 {
+		return false
 	}
-	return false
+
+	str, ok := para.Inlines[0].(*pandoc.Str)
+	if !ok {
+		return false
+	}
+
+	// Check for [!TYPE] pattern
+	text := str.Text
+	if !strings.HasPrefix(text, "[!") || !strings.HasSuffix(text, "]") {
+		return false
+	}
+
+	// Extract alert type
+	alertType := text[2 : len(text)-1]
+
+	// Map GitHub alert types to ConTeXt environments
+	var envType string
+	var title string
+	var icon string
+	var color string
+	switch strings.ToUpper(alertType) {
+	case "NOTE":
+		envType = "NOTE"
+		title = "Note"
+		icon = "\\NoteIcon"
+		color = "AlertNoteColor"
+	case "TIP":
+		envType = "TIP"
+		title = "Tip"
+		icon = "\\TipIcon"
+		color = "AlertTipColor"
+	case "IMPORTANT":
+		envType = "IMPORTANT"
+		title = "Important"
+		icon = "\\ImportantIcon"
+		color = "AlertImportantColor"
+	case "WARNING":
+		envType = "WARNING"
+		title = "Warning"
+		icon = "\\WarningIcon"
+		color = "AlertWarningColor"
+	case "CAUTION":
+		envType = "CAUTION"
+		title = "Caution"
+		icon = "\\CautionIcon"
+		color = "AlertCautionColor"
+	default:
+		return false
+	}
+
+	// Output ConTeXt environment with icon and styled heading
+	w.wr("\\start" + envType)
+	w.wr("{\\color[" + color + "]{" + icon + "\\space\\ss\\bf " + title + "}}")
+	w.wr("\n\\blank[small]\n")
+
+	// Write remaining content from first paragraph (after [!TYPE])
+	if len(para.Inlines) > 1 {
+		w.blockSep = "\n"
+		w.WriteInlines(para.Inlines[1:])
+	}
+
+	// Write remaining blocks
+	if len(blocks) > 1 {
+		w.blockSep = "\n"
+		w.WriteBlocks(blocks[1:])
+	}
+
+	w.wr("\n\\stop" + envType)
+	return true
 }
 
+// writeBlock converts a single Pandoc block element to ConTeXt markup.
+// It handles paragraphs, code blocks, lists, tables, headings, and other block-level elements.
 func (w *Writer) writeBlock(b pandoc.Block) {
 	switch b := b.(type) {
 	case *pandoc.Plain:
@@ -237,9 +315,7 @@ func (w *Writer) writeBlock(b pandoc.Block) {
 		w.blockSep = "\n\n"
 
 	case *pandoc.Para:
-		if !w.handleAdmonition(b.Inlines) {
-			w.WriteInlines(b.Inlines)
-		}
+		w.WriteInlines(b.Inlines)
 		w.blockSep = "\n\n"
 
 	case *pandoc.LineBlock:
@@ -263,10 +339,14 @@ func (w *Writer) writeBlock(b pandoc.Block) {
 		w.blockSep = "\n\n"
 
 	case *pandoc.BlockQuote:
-		w.wr("\\startblockquote")
-		w.blockSep = "\n"
-		w.WriteBlocks(b.Blocks)
-		w.wr("\n\\stopblockquote")
+		// Check for GitHub-style alerts first
+		if !w.handleAlert(b.Blocks) {
+			// Fall back to standard blockquote
+			w.wr("\\startblockquote")
+			w.blockSep = "\n"
+			w.WriteBlocks(b.Blocks)
+			w.wr("\n\\stopblockquote")
+		}
 		w.blockSep = "\n\n"
 
 	case *pandoc.OrderedList:
@@ -340,6 +420,8 @@ func (w *Writer) writeBlock(b pandoc.Block) {
 	}
 }
 
+// WriteBlocks converts a sequence of Pandoc blocks to ConTeXt markup, inserting
+// appropriate block separators between elements.
 func (w *Writer) WriteBlocks(bb []pandoc.Block) {
 	for _, b := range bb {
 		w.wr(w.blockSep)
@@ -347,6 +429,8 @@ func (w *Writer) WriteBlocks(bb []pandoc.Block) {
 	}
 }
 
+// writeExternalFigure generates a ConTeXt \externalfigure command for an image.
+// It handles image paths, size constraints, and offset positioning.
 func (w *Writer) writeExternalFigure(img *pandoc.Image) {
 	fn := img.Target.URL
 	fn = w.resolveImageTarget(fn)
@@ -414,6 +498,8 @@ func (w *Writer) writeExternalFigure(img *pandoc.Image) {
 	w.wr("}")
 }
 
+// writeImage generates a ConTeXt \placefigure command for a floating figure with caption.
+// For inline images, use writeExternalFigure instead.
 func (w *Writer) writeImage(img *pandoc.Image) {
 	options := []string{}
 
@@ -442,6 +528,9 @@ func (w *Writer) writeImage(img *pandoc.Image) {
 	w.writeExternalFigure(img)
 }
 
+// FlattenInlines converts a list of inline elements to a plain string with ConTeXt escaping.
+// This is used for generating link text and other contexts where formatted text is needed
+// as a simple string.
 func FlattenInlines(ll pandoc.InlineList) string {
 	buf := &bytes.Buffer{}
 	for _, l := range ll {
@@ -473,6 +562,8 @@ func FlattenInlines(ll pandoc.InlineList) string {
 	return buf.String()
 }
 
+// WriteInlines converts a list of Pandoc inline elements to ConTeXt markup.
+// It handles text, formatting, links, images, math, and other inline elements.
 func (w *Writer) WriteInlines(ll pandoc.InlineList) {
 	for _, l := range ll {
 		switch l := l.(type) {
@@ -579,6 +670,8 @@ var escaper = strings.NewReplacer(
 	`~`, `\~`,
 )
 
+// EscapeStr escapes special ConTeXt characters in a string. It handles backslash,
+// hash, dollar, percent, ampersand, braces, and tilde characters.
 func EscapeStr(s string) string {
 	if strings.ContainsAny(s, "\\~%$#{}") {
 		s = escaper.Replace(s)
@@ -586,6 +679,8 @@ func EscapeStr(s string) string {
 	return s
 }
 
+// contextFmt converts a Pandoc inline format type to the corresponding ConTeXt command.
+// It handles emphasis, bold, underline, strikeout, superscript, subscript, and small caps.
 func contextFmt(f pandoc.InlineFmt) string {
 	switch f {
 	case pandoc.Emph:
@@ -607,6 +702,8 @@ func contextFmt(f pandoc.InlineFmt) string {
 	}
 }
 
+// splitNumUnits parses a size string into a numeric value and unit.
+// Supported units are %, px, cm, mm, in, inch, pt, and em.
 func splitNumUnits(s string) (n float32, u string, err error) {
 	for _, p := range []string{"%", "px", "cm", "mm", "in", "inch", "pt", "em"} {
 		if strings.HasSuffix(s, p) {

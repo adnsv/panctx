@@ -1,3 +1,6 @@
+// Package main provides the panctx command-line tool for converting Markdown documents
+// to PDF via Pandoc and ConTeXt. It supports template-based document generation with
+// variable substitution and GitHub-style alerts.
 package main
 
 import (

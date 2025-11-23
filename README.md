@@ -2,7 +2,23 @@
 
 Markdown-Pandoc-ConTEXt-PDF converter
 
-This utility converts markdown files to pdf with Pandoc and Context. 
+PanCtx is a command-line tool that converts Markdown documents to professionally typeset PDFs using a template-based approach. It leverages Pandoc for Markdown parsing and ConTeXt for PDF generation, supporting GitHub-style alerts, custom layouts, and extensive formatting options.
+
+## Prerequisites
+
+Before installing PanCtx, ensure you have the following tools installed:
+
+- **Pandoc** (required): For converting Markdown to JSON AST
+  - Installation: https://pandoc.org/installing.html
+  - Verify: `pandoc --version`
+
+- **ConTeXt** (required for PDF generation): For typesetting and PDF creation
+  - Installation: https://wiki.contextgarden.net/Installation
+  - Verify: `context --version`
+
+- **Go compiler** (optional, for building from source): Version 1.16 or later
+  - Installation: https://golang.org/doc/install
+  - Verify: `go version`
 
 ## Installation
 
@@ -18,6 +34,33 @@ To build and install PanCtx from sources:
 - make sure you have a recent GO compiler installed
 - execute `go install github.com/adnsv/panctx@latest`
 
+## Quick Start
+
+Basic usage to convert a Markdown document to PDF:
+
+```bash
+panctx -w=./workdir -t=template.yaml main.tex
+```
+
+Where:
+- `main.tex`: ConTeXt file that references your Markdown content
+- `template.yaml`: Template configuration with variables and assets
+- `./workdir`: Temporary directory for intermediate files
+
+Example `main.tex`:
+
+```tex
+\input $<template:preamble.tex>$
+
+\startdocument[$<var:title>$]
+\startbodymatter
+\input $<markdown:content.md>$
+\stopbodymatter
+\stopdocument
+```
+
+See detailed examples in the sections below.
+
 ## Running PanCtx
 
 PanCtx is a command line utility that can be executed from a terminal or from a script.
@@ -28,9 +71,9 @@ A location of a template file (see below) for document generation can be specifi
 
 By default, generated PDF file is saved inside the working directory. Using `-o=<OUTPUT-FILE>` or `--output=<OUTPUT-FILE>` you can rename and move it to the location of your choice.
 
-Defitions and overrides to template definitions can be specified with `-d` or `--def` parameter followed by a `name=value` pair.
+Definitions and overrides to template definitions can be specified with `-d` or `--def` parameter followed by a `name=value` pair.
 
-The command line arguments must specify a main input file. The input is a ConTEXt flavored `.tex` file that contains lins and references to template assets.
+The command line arguments must specify a main input file. The input is a ConTEXt flavored `.tex` file that contains links and references to template assets.
 
 ## Sample Main File
 
@@ -99,11 +142,11 @@ To support this behavior, include the following fragment in your `preamble.tex` 
 
 There is also a couple of special definitions that control generated content:
 
-- `top-heading`: controls mapping of level one markdown headings to the generated ConTEXt headings. Supported values are `part`, `chapter`, `section`. Default is `section`.
+- `top-heading`: controls mapping of level one markdown headings to the generated ConTeXt headings. Supported values are `part`, `chapter`, `section`. Default is `chapter`.
 
-- `default-externalfigure-size`: can be used when importing external images (except for .svg). External figures are mapped to `\externalfigure[...]` statements in context. If the corresponding markdown does has no size constraints (e.g. no `width` and no `height` attributes), then the statement from `default-externalfigure-size` will be injected.
+- `default-externalfigure-size`: can be used when importing external images (except for .svg). External figures are mapped to `\externalfigure[...]` statements in ConTeXt. If the corresponding markdown has no size constraints (e.g. no `width` and no `height` attributes), then the statement from `default-externalfigure-size` will be injected.
 
-Notice also, that mapping of markdown descriptions, requires a custom ConText definition:
+Notice also, that mapping of markdown descriptions requires a custom ConTeXt definition:
 
 ```tex
 \definedescription[description][
@@ -115,4 +158,73 @@ Notice also, that mapping of markdown descriptions, requires a custom ConText de
 ]
 ```
 
-TODO: more detailed description
+## Markdown Features
+
+PanCtx uses Pandoc to convert Markdown to JSON AST, then converts the AST to ConTeXt format. The following features are supported:
+
+### Standard Markdown
+
+- **Headings**: Markdown headings (levels 1-6) are mapped to ConTeXt sectioning commands
+- **Paragraphs**: Standard paragraphs and line blocks
+- **Emphasis**: *italic*, **bold**, ~~strikethrough~~, superscript, subscript, small caps
+- **Lists**: Ordered lists, bullet lists, and definition lists
+- **Code**: Inline code and fenced code blocks with syntax highlighting
+- **Links**: Hyperlinks and cross-references (links ending with `#` become `\in` references)
+- **Images**: Inline images and floating figures with captions
+- **Tables**: Full table support using ConTeXt's xtable system
+- **Blockquotes**: Standard blockquotes and GitHub alerts (see below)
+- **Math**: Inline and display math using LaTeX syntax
+- **Raw ConTeXt**: Raw ConTeXt code can be embedded with ` ```{=tex} ` blocks
+
+### GitHub Alerts
+
+PanCtx supports GitHub-style alerts using blockquote syntax:
+
+```markdown
+> [!NOTE]
+> Helpful information for users
+
+> [!TIP]
+> Helpful advice or suggestions
+
+> [!IMPORTANT]
+> Critical information users need to know
+
+> [!WARNING]
+> Urgent information requiring attention
+
+> [!CAUTION]
+> Potential negative consequences of an action
+```
+
+Each alert type is converted to a corresponding ConTeXt environment (`\startNOTE`, `\startTIP`, etc.). To style these alerts, define the corresponding framed text environments in your preamble:
+
+```tex
+\defineframedtext[NOTE][
+  width=broad,
+  background=color,
+  backgroundcolor=...,
+  leftframe=on,
+  framecolor=...,
+  leftframethickness=4pt,
+  ...
+]
+```
+
+### Special Div Classes
+
+PanCtx supports special div classes for layout control:
+
+- `HSTACK`: Horizontal layout using table cells (separated by horizontal rules)
+- `narrower=<amount>`: Narrower text block
+- `combination=<spec>`: ConTeXt combination environment
+- `columns=<spec>`: Multi-column layout
+
+### Image Attributes
+
+Images support special attributes:
+
+- `width`, `height`: Size constraints (supports %, px, cm, mm, in, pt, em)
+- `placement=inline`: Forces inline placement (prevents floating figure)
+- `dx`, `dy`: Offset positioning
+- `options`: Additional ConTeXt figure options
