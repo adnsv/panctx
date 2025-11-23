@@ -287,7 +287,7 @@ func (w *Writer) handleAlert(blocks []pandoc.Block) bool {
 
 	// Output ConTeXt environment with icon and styled heading
 	w.wr("\\start" + envType)
-	w.wr("{\\color[" + color + "]{" + icon + "\\space\\ss\\bf " + title + "}}")
+	w.wr("{\\color[" + color + "]{" + icon + "\\space\\raise1.5pt\\hbox{\\ss\\bf " + title + "}}}")
 	w.wr("\n\\blank[small]\n")
 
 	// Write remaining content from first paragraph (after [!TYPE])
