@@ -618,7 +618,12 @@ func (w *Writer) WriteInlines(ll pandoc.InlineList) {
 			}
 
 		case *pandoc.RawInline:
-			w.wr(l.Text)
+			// Convert HTML break tags to ConTeXt line breaks
+			if l.Format == "html" && (l.Text == "<br>" || l.Text == "<br/>" || l.Text == "<br />") {
+				w.wr("\\crlf\n")
+			} else {
+				w.wr(l.Text)
+			}
 
 		case *pandoc.Image:
 			kvs := l.Attr.KeyValMap()
